@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKC Accounting - Professional Accounting Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'slide-up': 'slideUp 1s ease-out forwards'
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { opacity: 0, transform: 'translateY(32px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .slide-up-trigger {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .slide-up-trigger.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-green-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">LKC</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">LKC Accounting</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="setActivePage('home')" class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200">
+                        Home
+                    </button>
+                    <button onclick="setActivePage('about')" class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200">
+                        About Us
+                    </button>
+                    <button onclick="setActivePage('services')" class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200">
+                        Services
+                    </button>
+                    <button onclick="setActivePage('contact')" class="px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200">
+                        Contact Us
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMenu()" class="text-gray-600 hover:text-blue-600 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <button onclick="setActivePage('home'); toggleMenu()" class="w-full px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200">
+                        Home
+                    </button>
+                    <button onclick="setActivePage('about'); toggleMenu()" class="w-full px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200">
+                        About Us
+                    </button>
+                    <button onclick="setActivePage('services'); toggleMenu()" class="w-full px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200">
+                        Services
+                    </button>
+                    <button onclick="setActivePage('contact'); toggleMenu()" class="w-full px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200">
+                        Contact Us
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Home Page -->
+        <div id="home-page" class="relative">
+            <div class="relative h-96 md:h-[550px] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1600&h=550&fit=crop&auto=format" alt="Accounting professionals working with financial documents" class="w-full h-full object-cover" loading="eager">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div class="text-center text-white px-4 max-w-4xl">
+                        <div class="slide-up-trigger" style="transition-delay: 0ms;">
+                            <h1 class="text-4xl md:text-6xl font-bold mb-6">Professional Accounting Services</h1>
+                        </div>
+                        <div class="slide-up-trigger" style="transition-delay: 200ms;">
+                            <p class="text-xl md:text-2xl mb-12">
+                                Trusted financial solutions for businesses of all sizes. With over 3 years of experience and 500+ satisfied clients, 
+                                we deliver exceptional accounting services that drive your business success.
+                            </p>
+                        </div>
+                        <div class="slide-up-trigger flex flex-col sm:flex-row gap-8 justify-center" style="transition-delay: 300ms;">
+                            <button onclick="setActivePage('contact')" class="bg-white text-blue-600 px-8 py-3 rounded-md hover:bg-gray-100 transition-colors duration-200 font-medium text-lg shadow-lg">
+                                Get Started
+                            </button>
+                            <button onclick="setActivePage('about')" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-blue-600 transition-colors duration-200 font-medium text-lg">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="slide-up-trigger text-center p-8 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" style="transition-delay: 0ms;">
+                        <i class="fas fa-check-circle text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-2">3+ Years</h3>
+                        <p class="text-gray-600">Industry Experience</p>
+                    </div>
+                    <div class="slide-up-trigger text-center p-8 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" style="transition-delay: 100ms;">
+                        <i class="fas fa-check-circle text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-2">500+</h3>
+                        <p class="text-gray-600">Happy Customers</p>
+                    </div>
+                    <div class="slide-up-trigger text-center p-8 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" style="transition-delay: 200ms;">
+                        <i class="fas fa-check-circle text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-2">100%</h3>
+                        <p class="text-gray-600">Client Satisfaction</p>
+                    </div>
+                    <div class="slide-up-trigger text-center p-8 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" style="transition-delay: 300ms;">
+                        <i class="fas fa-check-circle text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-2">24/7</h3>
+                        <p class="text-gray-600">Support Available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="about-page" class="hidden relative">
+            <div class="relative h-96 md:h-[550px] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1600&h=550&fit=crop&auto=format" alt="Team collaboration in office" class="w-full h-full object-cover" loading="eager">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div class="text-center text-white px-4">
+                        <div class="slide-up-trigger">
+                            <h1 class="text-4xl md:text-6xl font-bold mb-4">About LKC Accounting</h1>
+                        </div>
+                        <div class="slide-up-trigger" style="transition-delay: 200ms;">
+                            <p class="text-xl md:text-2xl">Your Trusted Partner in Financial Excellence</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                    <div>
+                        <div class="slide-up-trigger">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Who We Are</h2>
+                        </div>
+                        <div class="slide-up-trigger" style="transition-delay: 100ms;">
+                            <p class="text-gray-600 mb-4 text-lg">
+                                LKC Accounting is a premier accounting firm dedicated to providing exceptional financial services to businesses of all sizes. 
+                                Founded with a commitment to integrity, accuracy, and client satisfaction, we have grown to become a trusted partner 
+                                for countless organizations across various industries.
+                            </p>
+                        </div>
+                        <div class="slide-up-trigger" style="transition-delay: 200ms;">
+                            <p class="text-gray-600 mb-4 text-lg">
+                                Our team of certified professionals brings decades of combined experience in accounting, taxation, auditing, 
+                                and financial consulting. We stay current with the latest regulations, technologies, and best practices to ensure 
+                                our clients receive the most up-to-date and effective solutions.
+                            </p>
+                        </div>
+                        <div class="slide-up-trigger" style="transition-delay: 300ms;">
+                            <p class="text-gray-600 text-lg">
+                                At LKC Accounting, we believe that every business deserves personalized attention and strategic financial guidance. 
+                                That's why we take the time to understand your unique goals, challenges, and opportunities before crafting 
+                                customized solutions that drive your success.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="slide-up-trigger bg-gray-100 p-8 rounded-lg" style="transition-delay: 400ms;">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Our Mission & Vision</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Our Mission</h4>
+                                <p class="text-gray-600 text-lg">
+                                    To empower businesses through exceptional accounting services, strategic financial guidance, and unwavering integrity.
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-800 mb-3">Our Vision</h4>
+                                <p class="text-gray-600 text-lg">
+                                    To be the most trusted and innovative accounting partner for businesses seeking sustainable growth and financial excellence.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <div class="slide-up-trigger">
+                        <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">Meet Our Team</h2>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="slide-up-trigger bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300" style="transition-delay: 0ms;">
+                            <div class="h-64 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face&auto=format" alt="Sarah Johnson" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800 mb-1">Sarah Johnson</h3>
+                                <p class="text-blue-600 font-medium mb-3">Managing Partner</p>
+                                <p class="text-gray-600 text-sm">CPA with 10+ years of experience in corporate accounting and financial strategy.</p>
+                            </div>
+                        </div>
+                        <div class="slide-up-trigger bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300" style="transition-delay: 100ms;">
+                            <div class="h-64 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face&auto=format" alt="Michael Chen" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800 mb-1">Michael Chen</h3>
+                                <p class="text-blue-600 font-medium mb-3">Senior Accountant</p>
+                                <p class="text-gray-600 text-sm">Specializes in tax planning and compliance for small to medium enterprises.</p>
+                            </div>
+                        </div>
+                        <div class="slide-up-trigger bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300" style="transition-delay: 200ms;">
+                            <div class="h-64 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face&auto=format" alt="Emily Rodriguez" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800 mb-1">Emily Rodriguez</h3>
+                                <p class="text-blue-600 font-medium mb-3">Financial Consultant</p>
+                                <p class="text-gray-600 text-sm">Expert in business advisory and financial forecasting for startups and growing businesses.</p>
+                            </div>
+                        </div>
+                        <div class="slide-up-trigger bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300" style="transition-delay: 300ms;">
+                            <div class="h-64 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face&auto=format" alt="David Kim" class="w-full h-full object-cover" loading="lazy">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-800 mb-1">David Kim</h3>
+                                <p class="text-blue-600 font-medium mb-3">Audit Manager</p>
+                                <p class="text-gray-600 text-sm">Leads our audit and assurance practice with expertise in regulatory compliance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Page -->
+        <div id="services-page" class="hidden relative">
+            <div class="relative h-96 md:h-[550px] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1600&h=550&fit=crop&auto=format" alt="Financial analysis and reporting" class="w-full h-full object-cover" loading="eager">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div class="text-center text-white px-4">
+                        <div class="slide-up-trigger">
+                            <h1 class="text-4xl md:text-6xl font-bold mb-4">Our Services</h1>
+                        </div>
+                        <div class="slide-up-trigger" style="transition-delay: 200ms;">
+                            <p class="text-xl md:text-2xl">Comprehensive Financial Solutions for Your Business</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="slide-up-trigger bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 h-full flex flex-col" style="transition-delay: 0ms;">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Bookkeeping & Accounting</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Comprehensive bookkeeping services including accounts payable/receivable, bank reconciliations, and general ledger maintenance. Our meticulous approach ensures your financial records are always accurate and up-to-date.</p>
+                        <div onclick="setActivePage('contact')" class="text-blue-600 hover:text-blue-800 font-medium cursor-pointer transition-colors duration-200">
+                            Learn more →
+                        </div>
+                    </div>
+                    <div class="slide-up-trigger bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 h-full flex flex-col" style="transition-delay: 100ms;">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Tax Preparation & Planning</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Professional tax preparation for individuals and businesses, along with strategic tax planning to minimize liabilities. We stay current with all tax regulations to maximize your savings and ensure compliance.</p>
+                        <div onclick="setActivePage('contact')" class="text-blue-600 hover:text-blue-800 font-medium cursor-pointer transition-colors duration-200">
+                            Learn more →
+                        </div>
+                    </div>
+                    <div class="slide-up-trigger bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 h-full flex flex-col" style="transition-delay: 200ms;">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Financial Statement Preparation</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Accurate and timely preparation of financial statements including balance sheets, income statements, and cash flow statements. Our reports provide clear insights into your financial health and performance.</p>
+                        <div onclick="setActivePage('contact')" class="text-blue-600 hover:text-blue-800 font-medium cursor-pointer transition-colors duration-200">
+                            Learn more →
+                        </div>
+                    </div>
+                    <div class="slide-up-trigger bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 h-full flex flex-col" style="transition-delay: 300ms;">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Payroll Services</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Complete payroll processing including tax calculations, direct deposits, and compliance with local regulations. We handle all aspects of payroll so you can focus on running your business.</p>
+                        <div onclick="setActivePage('contact')" class="text-blue-600 hover:text-blue-800 font-medium cursor-pointer transition-colors duration-200">
+                            Learn more →
+                        </div>
+                    </div>
+                    <div class="slide-up-trigger bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 h-full flex flex-col" style="transition-delay: 400ms;">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Business Consulting</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Strategic business consulting to help you make informed financial decisions and achieve your business goals. Our advisors provide actionable insights based on your unique circumstances and market conditions.</p>
+                        <div onclick="setActivePage('contact')" class="text-blue-600 hover:text-blue-800 font-medium cursor-pointer transition-colors duration-200">
+                            Learn more →
+                        </div>
+                    </div>
+                    <div class="slide-up-trigger bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 h-full flex flex-col" style="transition-delay: 500ms;">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Audit & Assurance</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Independent audit and assurance services to provide confidence in your financial reporting and compliance. Our thorough reviews help identify opportunities for improvement and risk mitigation.</p>
+                        <div onclick="setActivePage('contact')" class="text-blue-600 hover:text-blue-800 font-medium cursor-pointer transition-colors duration-200">
+                            Learn more →
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="contact-page" class="hidden relative">
+            <div class="relative h-96 md:h-[550px] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=550&fit=crop&auto=format" alt="Professional office environment" class="w-full h-full object-cover" loading="eager">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div class="text-center text-white px-4">
+                        <div class="slide-up-trigger">
+                            <h1 class="text-4xl md:text-6xl font-bold mb-4">Contact Us</h1>
+                        </div>
+                        <div class="slide-up-trigger" style="transition-delay: 200ms;">
+                            <p class="text-xl md:text-2xl">Get in Touch with Our Expert Team</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <div class="slide-up-trigger">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Get in Touch</h2>
+                        </div>
+                        <div class="slide-up-trigger space-y-6" style="transition-delay: 100ms;">
+                            <div class="flex items-start space-x-4">
+                                <i class="fas fa-phone text-blue-600 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800">Phone/WhatsApp</h3>
+                                    <p class="text-gray-600 text-lg">+254 748 349 151</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <i class="fas fa-envelope text-blue-600 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800">Email</h3>
+                                    <p class="text-gray-600 text-lg">lkcacc.info@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <i class="fas fa-map-marker-alt text-blue-600 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-800">Location</h3>
+                                    <p class="text-gray-600 text-lg">Nairobi, Kenya</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slide-up-trigger mt-8" style="transition-delay: 200ms;">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Follow Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="https://linkedin.com" target="_blank" class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors duration-200">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://facebook.com" target="_blank" class="w-12 h-12 bg-blue-800 rounded-full flex items-center justify-center text-white hover:bg-blue-900 transition-colors duration-200">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://twitter.com" target="_blank" class="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center text-white hover:bg-blue-500 transition-colors duration-200">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://instagram.com" target="_blank" class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition-colors duration-200">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide-up-trigger bg-gray-50 p-8 rounded-lg" style="transition-delay: 300ms;">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Send us a Message</h2>
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg" placeholder="Your name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg" placeholder="your.email@example.com">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea id="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg" placeholder="How can we help you?"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition-colors duration-200 font-medium text-lg">
+                                Send Message
+                            </button>
+                        </form>
+                        <div id="success-message" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                            <p class="text-lg">Thank you! Your message has been sent successfully. We'll contact you shortly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-green-500 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">LKC</span>
+                        </div>
+                        <span class="text-xl font-bold">LKC Accounting</span>
+                    </div>
+                    <p class="text-gray-300 text-lg">
+                        Professional accounting services for businesses of all sizes. Your trusted partner in financial excellence.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>
+                            <button onclick="setActivePage('home')" class="hover:text-white transition-colors duration-200 block text-left">
+                                Home
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="setActivePage('about')" class="hover:text-white transition-colors duration-200 block text-left">
+                                About Us
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="setActivePage('services')" class="hover:text-white transition-colors duration-200 block text-left">
+                                Services
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="setActivePage('contact')" class="hover:text-white transition-colors duration-200 block text-left">
+                                Contact Us
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Bookkeeping</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Tax Preparation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Payroll Services</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200">Business Consulting</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Info</h3>
+                    <div class="space-y-2 text-gray-300">
+                        <p class="text-lg">📱 +254 748 349 151</p>
+                        <p class="text-lg">✉️ lkcacc.info@gmail.com</p>
+                        <p class="text-lg">📍 Nairobi, Kenya</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p class="text-lg">&copy; 2024 LKC Accounting. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentPage = 'home';
+
+        function setActivePage(page) {
+            // Hide all pages
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('about-page').classList.add('hidden');
+            document.getElementById('services-page').classList.add('hidden');
+            document.getElementById('contact-page').classList.add('hidden');
+            
+            // Show selected page
+            document.getElementById(page + '-page').classList.remove('hidden');
+            currentPage = page;
+            
+            // Reset form if going to contact page
+            if (page === 'contact') {
+                document.getElementById('success-message').classList.add('hidden');
+                document.getElementById('contact-form').reset();
+            }
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Slide-up animation on scroll
+        function handleScroll() {
+            const triggers = document.querySelectorAll('.slide-up-trigger');
+            triggers.forEach(trigger => {
+                const triggerPosition = trigger.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                if (triggerPosition < screenPosition) {
+                    trigger.classList.add('visible');
+                }
+            });
+        }
+
+        // Handle form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('success-message').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('success-message').classList.add('hidden');
+            }, 3000);
+        });
+
+        // Initialize scroll handler
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Check on initial load
+
+        // Initialize with home page
+        setActivePage('home');
+    </script>
+</body>
+</html>
