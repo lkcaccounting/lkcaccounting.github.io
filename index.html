@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Policy | LKC Accounting</title>
+    <title>LKC Accounting | Ledger & Knowledge Consulting</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,12 +19,22 @@
         
         body {
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
             background: #0a0a0f;
-            color: white;
         }
         
         .font-display {
             font-family: 'Playfair Display', serif;
+        }
+        
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
         }
         
         .glass-card {
@@ -30,11 +43,64 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
         
+        .glass-card-dark {
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
         .gradient-text {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+        
+        .gradient-text-gold {
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .service-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-delay-1 {
+            animation: float 6s ease-in-out 1s infinite;
+        }
+        
+        .floating-delay-2 {
+            animation: float 6s ease-in-out 2s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.6); }
+        }
+        
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
         }
         
         .nav-link {
@@ -56,17 +122,91 @@
             width: 100%;
         }
         
-        .cookie-type {
-            border-left: 3px solid #667eea;
+        .testimonial-card {
+            transition: all 0.4s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .hero-3d-text {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(102, 126, 234, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .kenyan-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-shine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-shine:hover::before {
+            left: 100%;
+        }
+        
+        .wave-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        
+        .wave-bg svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+        }
+        
+        .wave-bg .shape-fill {
+            fill: #0a0a0f;
         }
     </style>
 </head>
-<body>
+<body class="text-white">
+    <!-- 3D Background Canvas -->
+    <div id="canvas-container"></div>
+    
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 glass-card py-4">
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-4">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex items-center justify-between">
-                <a href="index.html" class="flex items-center gap-3 group">
+                <a href="#" class="flex items-center gap-3 group">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center transform group-hover:rotate-12 transition-transform">
                         <i data-lucide="calculator" class="w-6 h-6 text-white"></i>
                     </div>
@@ -77,179 +217,524 @@
                 </a>
                 
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="index.html#services" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Services</a>
-                    <a href="index.html#about" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">About</a>
-                    <a href="index.html#testimonials" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Testimonials</a>
-                    <a href="index.html#contact" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
+                    <a href="#services" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Services</a>
+                    <a href="#about" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="#testimonials" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Testimonials</a>
+                    <a href="#contact" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
                 </div>
                 
-                <a href="index.html#contact" class="hidden md:flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full text-sm font-semibold hover:shadow-lg hover:shadow-indigo-500/30 transition-all">
+                <a href="#contact" class="hidden md:flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full text-sm font-semibold btn-shine hover:shadow-lg hover:shadow-indigo-500/30 transition-all">
                     <i data-lucide="mail" class="w-4 h-4"></i>
                     Get Started
                 </a>
+                
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full glass-card-dark py-4">
+            <div class="flex flex-col gap-4 px-6">
+                <a href="#services" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Services</a>
+                <a href="#about" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">About</a>
+                <a href="#testimonials" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Testimonials</a>
+                <a href="#contact" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-20">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="inline-block px-4 py-2 rounded-full glass-card text-sm font-medium text-indigo-400 mb-4">Legal</span>
-                <h1 class="font-display text-4xl md:text-6xl font-bold mb-6">Cookie <span class="gradient-text">Policy</span></h1>
-                <p class="text-gray-400">Last updated: January 2025</p>
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 kenyan-pattern opacity-50"></div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 rounded-full bg-indigo-500/20 blur-xl floating"></div>
+        <div class="absolute bottom-40 right-20 w-32 h-32 rounded-full bg-purple-500/20 blur-xl floating-delay-1"></div>
+        <div class="absolute top-1/3 right-1/4 w-16 h-16 rounded-full bg-pink-500/20 blur-xl floating-delay-2"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 py-32">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="hero-3d-text">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6">
+                        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                        <span class="text-xs font-medium text-gray-300">Trusted by 100+ Small Businesses</span>
+                    </div>
+                    
+                    <h1 class="font-display text-5xl md:text-7xl font-bold leading-tight mb-6">
+                        <span class="block">Ledger &</span>
+                        <span class="gradient-text">Knowledge</span>
+                        <span class="block">Consulting</span>
+                    </h1>
+                    
+                    <p class="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
+                        Professional accounting services tailored for small business owners in Kenya. From Mama Mbogas to butcheries, we keep your books clean and your business growing.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full font-semibold btn-shine hover:shadow-xl hover:shadow-indigo-500/30 transition-all transform hover:scale-105">
+                            <i data-lucide="rocket" class="w-5 h-5"></i>
+                            Start Your Journey
+                        </a>
+                        <a href="#services" class="inline-flex items-center gap-2 px-8 py-4 glass-card rounded-full font-semibold hover:bg-white/10 transition-all">
+                            <i data-lucide="play-circle" class="w-5 h-5"></i>
+                            Explore Services
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center gap-8 mt-12">
+                        <div>
+                            <p class="text-3xl font-bold gradient-text-gold stat-number" data-target="100">0</p>
+                            <p class="text-sm text-gray-400">Happy Clients</p>
+                        </div>
+                        <div class="w-px h-12 bg-white/10"></div>
+                        <div>
+                            <p class="text-3xl font-bold gradient-text-gold">2025</p>
+                            <p class="text-sm text-gray-400">Founded</p>
+                        </div>
+                        <div class="w-px h-12 bg-white/10"></div>
+                        <div>
+                            <p class="text-3xl font-bold gradient-text-gold">4+</p>
+                            <p class="text-sm text-gray-400">Core Services</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="relative w-full aspect-square max-w-lg mx-auto">
+                        <!-- 3D Card Stack -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="tilt-card w-full h-full relative" id="hero-image-card">
+                                <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-indigo-500/20 to-purple-600/20 blur-2xl"></div>
+                                <img src="http://static.photos/workspace/640x640/42" alt="Professional Accounting" class="relative w-full h-full object-cover rounded-3xl shadow-2xl">
+                                
+                                <!-- Floating Stats Card -->
+                                <div class="absolute -bottom-6 -left-6 glass-card rounded-2xl p-4 pulse-glow">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
+                                            <i data-lucide="trending-up" class="w-6 h-6 text-green-400"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-gray-400">Growth Rate</p>
+                                            <p class="text-xl font-bold">+127%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Floating Notification -->
+                                <div class="absolute -top-4 -right-4 glass-card rounded-xl p-3 floating">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">
+                                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                                        </div>
+                                        <span class="text-sm font-medium">Books Balanced</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="wave-bg">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="relative py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 scroll-reveal">
+                <span class="inline-block px-4 py-2 rounded-full glass-card text-sm font-medium text-indigo-400 mb-4">Our Expertise</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Services Built for <span class="gradient-text">Small Businesses</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">We understand the unique challenges faced by small business owners. Our services are designed to be affordable, practical, and impactful.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card glass-card rounded-3xl p-8 scroll-reveal group">
+                    <div class="flex items-start gap-6">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="file-spreadsheet" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-3">Accounting Records Cleanup</h3>
+                            <p class="text-gray-400 mb-4">Transform chaotic spreadsheets into organized, reliable financial records.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-center gap-2 text-sm text-gray-300">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                    Fix messy Excel files
+                                </li>
+                                <li class="flex items-center gap-2 text-sm text-gray-300">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                    Reconcile cash, sales, and expenses
+                                </li>
+                                <li class="flex items-center gap-2 text-sm text-gray-300">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                    Restore missing or inconsistent records
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 rounded-2xl overflow-hidden h-48">
+                        <img src="http://static.photos/office/640x360/88" alt="Accounting Records" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card glass-card rounded-3xl p-8 scroll-reveal group">
+                    <div class="flex items-start gap-6">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="search" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-3">Loss & Leakage Reviews</h3>
+                            <p class="text-gray-400 mb-4">Protect your profits by identifying and stopping financial leaks.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-center gap-2 text-sm text-gray-300">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                    Identify unexplained losses
+                                </li>
+                                <li class="flex items-center gap-2 text-sm text-gray-300">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                    Check internal controls
+                                </li>
+                                <li class="flex items-center gap-2 text-sm text-gray-300">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                    Highlight weak areas in cash handling
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 rounded-2xl overflow-hidden h-48">
+                        <img src="http://static.photos/workspace/640x360/156" alt="Loss Review" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card glass-card rounded-3xl p-8 scroll-reveal group">
+                    <div class="flex items-start gap-6">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="book-open" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-3">Bookkeeping Support</h3>
+                            <p class="text-gray-400 mb-4">Stay on top of your finances with ongoing professional support.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-center gap-2 text-sm text-gray-300">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                    Ongoing tracking of income & expenses
+                                </li>
+                                <li class="flex items-center gap-2 text-sm text-gray-300">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                    Simple monthly summaries
+                                </li>
+                                <li class="flex items-center gap-2 text-sm text-gray-300">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                    Owner-friendly reports
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 rounded-2xl overflow-hidden h-48">
+                        <img src="http://static.photos/office/640x360/234" alt="Bookkeeping" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card glass-card rounded-3xl p-8 scroll-reveal group">
+                    <div class="flex items-start gap-6">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="lightbulb" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-3">Accounting Advisory & Consulting</h3>
+                            <p class="text-gray-400 mb-4">Make smarter business decisions with expert financial guidance.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-center gap-2 text-sm text-gray-300">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                    Business performance reviews
+                                </li>
+                                <li class="flex items-center gap-2 text-sm text-gray-300">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                    Pricing & cost guidance
+                                </li>
+                                <li class="flex items-center gap-2 text-sm text-gray-300">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                    Financial decision support
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 rounded-2xl overflow-hidden h-48">
+                        <img src="http://static.photos/workspace/640x360/312" alt="Advisory" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Content Section -->
-    <section class="relative py-16">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="glass-card rounded-3xl p-8 md:p-12 space-y-8">
+    <!-- About Section -->
+    <section id="about" class="relative py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-900/10 to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="scroll-reveal">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-3xl blur-2xl opacity-30"></div>
+                        <img src="http://static.photos/office/640x640/456" alt="LKC Accounting Team" class="relative rounded-3xl shadow-2xl w-full">
+                        
+                        <!-- Experience Badge -->
+                        <div class="absolute -bottom-6 -right-6 glass-card rounded-2xl p-6">
+                            <p class="text-4xl font-bold gradient-text">100+</p>
+                            <p class="text-sm text-gray-400">Happy Clients</p>
+                        </div>
+                    </div>
+                </div>
                 
-                <div>
-                    <h2 class="text-2xl font-bold mb-4">1. What Are Cookies</h2>
-                    <p class="text-gray-400 leading-relaxed">
-                        Cookies are small text files that are stored on your computer or mobile device when you visit a website. They are widely used to make websites work more efficiently and provide information to the owners of the site. Cookies help us provide you with a good experience when you browse our website and also allow us to improve our site.
+                <div class="scroll-reveal">
+                    <span class="inline-block px-4 py-2 rounded-full glass-card text-sm font-medium text-indigo-400 mb-4">About Us</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Empowering Kenyan <span class="gradient-text">Small Businesses</span></h2>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Founded in 2025, LKC Accounting (Ledger & Knowledge Consulting) was born from a simple observation: small business owners in Kenya needed affordable, professional accounting services that understood their unique challenges.
                     </p>
-                </div>
-
-                <div>
-                    <h2 class="text-2xl font-bold mb-4">2. How We Use Cookies</h2>
-                    <p class="text-gray-400 leading-relaxed mb-4">
-                        LKC Accounting uses cookies for several purposes, including:
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        From Mama Mbogas to barbers, butcheries to salons, we've helped over 100 small business owners transform their financial management. We believe every business deserves professional accounting, regardless of size.
                     </p>
-                    <ul class="space-y-3 text-gray-400">
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="settings" class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5"></i>
-                            <span><strong>Essential Cookies:</strong> These cookies are necessary for the website to function properly. They enable basic functions like page navigation and access to secure areas of the website.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="bar-chart-2" class="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5"></i>
-                            <span><strong>Analytics Cookies:</strong> These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. This helps us improve our website.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="zap" class="w-5 h-5 text-pink-400 flex-shrink-0 mt-0.5"></i>
-                            <span><strong>Performance Cookies:</strong> These cookies are used to enhance the performance and functionality of our website but are non-essential to their use.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="target" class="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5"></i>
-                            <span><strong>Marketing Cookies:</strong> These cookies are used to track visitors across websites. The intention is to display ads that are relevant and engaging for the individual user.</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h2 class="text-2xl font-bold mb-4">3. Types of Cookies We Use</h2>
                     
-                    <div class="space-y-4">
-                        <div class="cookie-type pl-4 py-2">
-                            <h3 class="font-semibold text-lg mb-2">Session Cookies</h3>
-                            <p class="text-gray-400 text-sm">These cookies are temporary and expire once you close your browser. They help us track your movement from page to page so you don't get asked for the same information you've already given to the site.</p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="glass-card rounded-2xl p-6 text-center">
+                            <i data-lucide="users" class="w-8 h-8 text-indigo-400 mx-auto mb-3"></i>
+                            <p class="text-2xl font-bold">100+</p>
+                            <p class="text-sm text-gray-400">Clients Served</p>
                         </div>
-                        
-                        <div class="cookie-type pl-4 py-2">
-                            <h3 class="font-semibold text-lg mb-2">Persistent Cookies</h3>
-                            <p class="text-gray-400 text-sm">These cookies remain on your device for a set period or until you manually delete them. They help us remember your preferences and settings when you return to our website.</p>
+                        <div class="glass-card rounded-2xl p-6 text-center">
+                            <i data-lucide="award" class="w-8 h-8 text-purple-400 mx-auto mb-3"></i>
+                            <p class="text-2xl font-bold">4</p>
+                            <p class="text-sm text-gray-400">Core Services</p>
                         </div>
-                        
-                        <div class="cookie-type pl-4 py-2">
-                            <h3 class="font-semibold text-lg mb-2">First-Party Cookies</h3>
-                            <p class="text-gray-400 text-sm">These are cookies that we place on your device directly. They are used to maintain your session and remember your preferences.</p>
+                        <div class="glass-card rounded-2xl p-6 text-center">
+                            <i data-lucide="calendar" class="w-8 h-8 text-pink-400 mx-auto mb-3"></i>
+                            <p class="text-2xl font-bold">2025</p>
+                            <p class="text-sm text-gray-400">Founded</p>
                         </div>
-                        
-                        <div class="cookie-type pl-4 py-2">
-                            <h3 class="font-semibold text-lg mb-2">Third-Party Cookies</h3>
-                            <p class="text-gray-400 text-sm">These cookies are placed on your device by our partners and service providers. They may include analytics services like Google Analytics.</p>
+                        <div class="glass-card rounded-2xl p-6 text-center">
+                            <i data-lucide="heart" class="w-8 h-8 text-red-400 mx-auto mb-3"></i>
+                            <p class="text-2xl font-bold">100%</p>
+                            <p class="text-sm text-gray-400">Commitment</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div>
-                    <h2 class="text-2xl font-bold mb-4">4. Specific Cookies We Use</h2>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left">
-                            <thead>
-                                <tr class="border-b border-white/10">
-                                    <th class="pb-3 text-gray-300">Cookie Name</th>
-                                    <th class="pb-3 text-gray-300">Purpose</th>
-                                    <th class="pb-3 text-gray-300">Duration</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-gray-400 text-sm">
-                                <tr class="border-b border-white/5">
-                                    <td class="py-3">_ga</td>
-                                    <td>Google Analytics - Used to distinguish users</td>
-                                    <td>2 years</td>
-                                </tr>
-                                <tr class="border-b border-white/5">
-                                    <td class="py-3">_gid</td>
-                                    <td>Google Analytics - Used to distinguish users</td>
-                                    <td>24 hours</td>
-                                </tr>
-                                <tr class="border-b border-white/5">
-                                    <td class="py-3">session_id</td>
-                                    <td>Maintains your session state</td>
-                                    <td>Session</td>
-                                </tr>
-                                <tr class="border-b border-white/5">
-                                    <td class="py-3">cookie_consent</td>
-                                    <td>Stores your cookie consent preferences</td>
-                                    <td>1 year</td>
-                                </tr>
-                            </tbody>
-                        </table>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="relative py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 scroll-reveal">
+                <span class="inline-block px-4 py-2 rounded-full glass-card text-sm font-medium text-indigo-400 mb-4">Testimonials</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Trusted by <span class="gradient-text">Local Business Owners</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Hear from the entrepreneurs who transformed their businesses with LKC Accounting.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card glass-card rounded-3xl p-6 scroll-reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="http://static.photos/office/200x200/567" alt="Eunice Waweru" class="w-14 h-14 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold">Eunice Waweru</h4>
+                            <p class="text-sm text-indigo-400">Mama Mboga</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">"LKC Accounting helped me organize my vegetable business finances. Now I know exactly how much profit I make each day. Asante sana!"</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card glass-card rounded-3xl p-6 scroll-reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="http://static.photos/workspace/200x200/678" alt="Antony Kiprop" class="w-14 h-14 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold">Antony Kiprop</h4>
+                            <p class="text-sm text-indigo-400">Barber</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">"My barbershop was losing money and I didn't know why. LKC found the leaks in my cash handling. Business is now booming!"</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card glass-card rounded-3xl p-6 scroll-reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="http://static.photos/office/200x200/789" alt="Andrew Tum" class="w-14 h-14 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold">Andrew Tum</h4>
+                            <p class="text-sm text-indigo-400">Butchery Owner</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">"The monthly reports from LKC are so easy to understand. I finally know which meat products bring the most profit. Highly recommended!"</p>
+                </div>
+                
+                >
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card glass-card rounded-3xl p-6 scroll-reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="http://static.photos/workspace/200x200/890" alt="Amina" class="w-14 h-14 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold">Amina</h4>
+                            <p class="text-sm text-indigo-400">Salonist</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">"LKC cleaned up my messy salon records and showed me how to price my services better. My income has increased by 40%!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20"></div>
+        <div class="absolute inset-0 kenyan-pattern opacity-30"></div>
+        
+        <div class="max-w-4xl mx-auto px-6 text-center relative scroll-reveal">
+            <h2 class="font-display text-4xl md:text-6xl font-bold mb-6">Ready to Transform Your <span class="gradient-text">Business Finances?</span></h2>
+            <p class="text-xl text-gray-400 mb-10">Join 100+ small business owners who trust LKC Accounting. Let's grow together.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="mailto:info.lkcacc@gmail.com" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full font-semibold btn-shine hover:shadow-xl hover:shadow-indigo-500/30 transition-all transform hover:scale-105">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    Email Us Now
+                </a>
+                <a href="tel:+254748349151" class="inline-flex items-center gap-2 px-8 py-4 glass-card rounded-full font-semibold hover:bg-white/10 transition-all">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                    Call 0748 349 151
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="scroll-reveal">
+                    <span class="inline-block px-4 py-2 rounded-full glass-card text-sm font-medium text-indigo-400 mb-4">Get In Touch</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Let's Start Your <span class="gradient-text">Financial Journey</span></h2>
+                    <p class="text-gray-400 mb-8 leading-relaxed">Reach out to us through any of these channels. We're ready to help your business thrive.</p>
+                    
+                    <div class="space-y-6">
+                        <a href="mailto:info.lkcacc@gmail.com" class="flex items-center gap-4 p-4 glass-card rounded-2xl hover:bg-white/5 transition-colors group">
+                            <div class="w-14 h-14 rounded-xl bg-indigo-500/20 flex items-center justify-center group-hover:bg-indigo-500/30 transition-colors">
+                                <i data-lucide="mail" class="w-6 h-6 text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Email Us</p>
+                                <p class="font-semibold">info.lkcacc@gmail.com</p>
+                            </div>
+                            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                        </a>
+                        
+                        <a href="tel:+254748349151" class="flex items-center gap-4 p-4 glass-card rounded-2xl hover:bg-white/5 transition-colors group">
+                            <div class="w-14 h-14 rounded-xl bg-purple-500/20 flex items-center justify-center group-hover:bg-purple-500/30 transition-colors">
+                                <i data-lucide="phone" class="w-6 h-6 text-purple-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Call Us</p>
+                                <p class="font-semibold">0748 349 151</p>
+                            </div>
+                            <i data-lucide="arrow-right" class="w-5 h-5 text-gray-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <p class="text-sm text-gray-400 mb-4">Follow Us</p>
+                        <div class="flex gap-4">
+                            <a href="https://tiktok.com/@lkcaccounting" target="_blank" class="w-12 h-12 rounded-xl glass-card flex items-center justify-center hover:bg-white/10 transition-colors group">
+                                <svg class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                                </svg>
+                            </a>
+                            <a href="https://instagram.com/lkcaccounting" target="_blank" class="w-12 h-12 rounded-xl glass-card flex items-center justify-center hover:bg-white/10 transition-colors group">
+                                <i data-lucide="instagram" class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors"></i>
+                            </a>
+                            <a href="https://linkedin.com/company/lkcaccounting" target="_blank" class="w-12 h-12 rounded-xl glass-card flex items-center justify-center hover:bg-white/10 transition-colors group">
+                                <i data-lucide="linkedin" class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <div>
-                    <h2 class="text-2xl font-bold mb-4">5. Managing Cookies</h2>
-                    <p class="text-gray-400 leading-relaxed mb-4">
-                        Most web browsers allow you to control cookies through their settings preferences. However, if you limit the ability of websites to set cookies, you may worsen your overall user experience, since it will no longer be personalized to you. It may also stop you from saving customized settings like login information.
-                    </p>
-                    <p class="text-gray-400 leading-relaxed mb-4">
-                        To manage cookies in your browser, follow these links for instructions:
-                    </p>
-                    <ul class="space-y-2 text-gray-400">
-                        <li>• <a href="https://support.google.com/chrome/answer/95647" target="_blank" class="text-indigo-400 hover:text-indigo-300">Google Chrome</a></li>
-                        <li>• <a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences" target="_blank" class="text-indigo-400 hover:text-indigo-300">Mozilla Firefox</a></li>
-                        <li>• <a href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac" target="_blank" class="text-indigo-400 hover:text-indigo-300">Safari</a></li>
-                        <li>• <a href="https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies" target="_blank" class="text-indigo-400 hover:text-indigo-300">Internet Explorer</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h2 class="text-2xl font-bold mb-4">6. Your Consent</h2>
-                    <p class="text-gray-400 leading-relaxed">
-                        By continuing to use our website, you are agreeing to our placing cookies on your computer in order to analyze the way you use our website. If you do not wish to accept cookies from our website, you should either stop using our website or configure your browser settings to reject cookies. Please note that our website may not function properly if you disable cookies.
-                    </p>
-                </div>
-
-                <div>
-                    <h2 class="text-2xl font-bold mb-4">7. Changes to This Cookie Policy</h2>
-                    <p class="text-gray-400 leading-relaxed">
-                        We may update this Cookie Policy from time to time in order to reflect changes to the cookies we use or for other operational, legal, or regulatory reasons. Please re-visit this Cookie Policy regularly to stay informed about our use of cookies and related technologies.
-                    </p>
-                </div>
-
-                <div>
-                    <h2 class="text-2xl font-bold mb-4">8. Contact Us</h2>
-                    <p class="text-gray-400 leading-relaxed mb-4">
-                        If you have any questions about our use of cookies or other technologies, please contact us at:
-                    </p>
-                    <div class="glass-card rounded-xl p-6">
-                        <p class="text-gray-300"><strong>LKC Accounting</strong></p>
-                        <p class="text-gray-400">Email: <a href="mailto:info.lkcacc@gmail.com" class="text-indigo-400 hover:text-indigo-300">info.lkcacc@gmail.com</a></p>
-                        <p class="text-gray-400">Phone: <a href="tel:+254748349151" class="text-indigo-400 hover:text-indigo-300">0748 349 151</a></p>
+                
+                <div class="scroll-reveal">
+                    <div class="glass-card rounded-3xl p-8">
+                        <h3 class="text-2xl font-bold mb-6">Send Us a Message</h3>
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-indigo-500 focus:outline-none transition-colors text-white placeholder-gray-500" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Your Email</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-indigo-500 focus:outline-none transition-colors text-white placeholder-gray-500" placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Business Type</label>
+                                <select id="business-type" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-indigo-500 focus:outline-none transition-colors text-white">
+                                    <option value="" class="bg-gray-900">Select your business</option>
+                                    <option value="retail" class="bg-gray-900">Retail Shop</option>
+                                    <option value="food" class="bg-gray-900">Food Business</option>
+                                    <option value="services" class="bg-gray-900">Service Business</option>
+                                    <option value="other" class="bg-gray-900">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                                <textarea id="message" rows="4" required class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-indigo-500 focus:outline-none transition-colors text-white placeholder-gray-500 resize-none" placeholder="Tell us about your accounting needs..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl font-semibold btn-shine hover:shadow-xl hover:shadow-indigo-500/30 transition-all transform hover:scale-[1.02]">
+                                Send Message
+                            </button>
+                        </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="relative py-16 border-t border-white/10 mt-16">
+    <footer class="relative py-16 border-t border-white/10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-12 mb-12">
                 <div class="md:col-span-2">
@@ -262,15 +747,29 @@
                             <p class="text-xs text-gray-400">Ledger & Knowledge Consulting</p>
                         </div>
                     </div>
-                    <p class="text-gray-400 max-w-md mb-6">Professional accounting services for small business owners in Kenya.</p>
+                    <p class="text-gray-400 max-w-md mb-6">Professional accounting services for small business owners in Kenya. We make financial management simple, affordable, and effective.</p>
+                    <div class="flex gap-4">
+                        <a href="https://tiktok.com/@lkcaccounting" target="_blank" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/lkcaccounting" target="_blank" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/lkcaccounting" target="_blank" class="w-10 h-10 rounded-lg glass-card flex items-center justify-center hover:bg-white/10 transition-colors">
+                            <i data-lucide="linkedin" class="w-4 h-4"></i>
+                        </a>
+                    </div>
                 </div>
                 
                 <div>
                     <h4 class="font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-3">
-                        <li><a href="index.html#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
-                        <li><a href="index.html#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition-colors">Testimonials</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
                     </ul>
                 </div>
                 
@@ -282,16 +781,264 @@
                         <li><a href="cookie-policy.html" class="text-gray-400 hover:text-white transition-colors">Cookie Policy</a></li>
                     </ul>
                 </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-2 text-gray-400">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                            <a href="mailto:info.lkcacc@gmail.com" class="hover:text-white transition-colors">info.lkcacc@gmail.com</a>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-400">
+                            <i data-lucide="phone" class="w-4 h-4"></i>
+                            <a href="tel:+254748349151" class="hover:text-white transition-colors">0748 349 151</a>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-400">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i>
+                            <span>Kenya</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
             
             <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-gray-400 text-sm">&copy; 2025 LKC Accounting. All rights reserved.</p>
+                <p class="text-gray-500 text-sm">Made with ❤️ for Kenyan small businesses</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Initialize Lucide Icons
         lucide.createIcons();
+        
+        // Register GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Three.js 3D Background
+        const initThreeJS = () => {
+            const container = document.getElementById('canvas-container');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+            
+            // Create floating geometric shapes
+            const geometries = [];
+            const materials = [
+                new THREE.MeshBasicMaterial({ color: 0x667eea, wireframe: true, transparent: true, opacity: 0.3 }),
+                new THREE.MeshBasicMaterial({ color: 0x764ba2, wireframe: true, transparent: true, opacity: 0.3 }),
+                new THREE.MeshBasicMaterial({ color: 0xf093fb, wireframe: true, transparent: true, opacity: 0.2 })
+            ];
+            
+            // Create icosahedrons
+            for (let i = 0; i < 15; i++) {
+                const geometry = new THREE.IcosahedronGeometry(Math.random() * 2 + 0.5, 0);
+                const material = materials[Math.floor(Math.random() * materials.length)];
+                const mesh = new THREE.Mesh(geometry, material);
+                
+                mesh.position.x = (Math.random() - 0.5) * 30;
+                mesh.position.y = (Math.random() - 0.5) * 30;
+                mesh.position.z = (Math.random() - 0.5) * 20 - 10;
+                
+                mesh.rotation.x = Math.random() * Math.PI;
+                mesh.rotation.y = Math.random() * Math.PI;
+                
+                mesh.userData = {
+                    rotationSpeed: {
+                        x: (Math.random() - 0.5) * 0.01,
+                        y: (Math.random() - 0.5) * 0.01
+                    },
+                    floatSpeed: Math.random() * 0.002 + 0.001,
+                    floatOffset: Math.random() * Math.PI * 2
+                };
+                
+                geometries.push(mesh);
+                scene.add(mesh);
+            }
+            
+            // Add particles
+            const particleGeometry = new THREE.BufferGeometry();
+            const particleCount = 200;
+            const positions = new Float32Array(particleCount * 3);
+            
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                positions[i] = (Math.random() - 0.5) * 50;
+                positions[i + 1] = (Math.random() - 0.5) * 50;
+                positions[i + 2] = (Math.random() - 0.5) * 30;
+            }
+            
+            particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            
+            const particleMaterial = new THREE.PointsMaterial({
+                color: 0x667eea,
+                size: 0.05,
+                transparent: true,
+                opacity: 0.6
+            });
+            
+            const particles = new THREE.Points(particleGeometry, particleMaterial);
+            scene.add(particles);
+            
+            camera.position.z = 5;
+            
+            // Mouse interaction
+            let mouseX = 0;
+            let mouseY = 0;
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+            });
+            
+            // Animation loop
+            const animate = () => {
+                requestAnimationFrame(animate);
+                
+                const time = Date.now() * 0.001;
+                
+                geometries.forEach((mesh) => {
+                    mesh.rotation.x += mesh.userData.rotationSpeed.x;
+                    mesh.rotation.y += mesh.userData.rotationSpeed.y;
+                    mesh.position.y += Math.sin(time * mesh.userData.floatSpeed + mesh.userData.floatOffset) * 0.01;
+                });
+                
+                particles.rotation.y = time * 0.05;
+                particles.rotation.x = mouseY * 0.1;
+                particles.rotation.y += mouseX * 0.01;
+                
+                camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+                camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.05;
+                
+                renderer.render(scene, camera);
+            };
+            
+            animate();
+            
+            // Handle resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        };
+        
+        // Initialize Three.js
+        initThreeJS();
+        
+        // GSAP Animations
+        // Navbar scroll effect
+        ScrollTrigger.create({
+            start: 'top -100',
+            end: 99999,
+            toggleClass: { className: 'glass-card-dark py-2', targets: '#navbar' }
+        });
+        
+        // Scroll reveal animations
+        gsap.utils.toArray('.scroll-reveal').forEach((element) => {
+            gsap.to(element, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+        
+        // Counter animation
+        const counters = document.querySelectorAll('.stat-number');
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            gsap.to(counter, {
+                innerHTML: target,
+                duration: 2,
+                ease: 'power2.out',
+                snap: { innerHTML: 1 },
+                scrollTrigger: {
+                    trigger: counter,
+                    start: 'top 85%'
+                }
+            });
+        });
+        
+        // 3D Tilt effect for hero image
+        const tiltCard = document.getElementById('hero-image-card');
+        if (tiltCard) {
+            tiltCard.addEventListener('mousemove', (e) => {
+                const rect = tiltCard.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                tiltCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            tiltCard.addEventListener('mouseleave', () => {
+                tiltCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            });
+        }
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const businessType = document.getElementById('business-type').value;
+            const message = document.getElementById('message').value;
+            
+            const subject = `New Message from ${name} - LKC Accounting Website`;
+            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0ABusiness Type: ${businessType}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+            
+            window.location.href = `mailto:info.lkcacc@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+        });
+        
+        // Parallax effect for floating elements
+        document.addEventListener('mousemove', (e) => {
+            const floatingElements = document.querySelectorAll('.floating, .floating-delay-1, .floating-delay-2');
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            
+            floatingElements.forEach((el, index) => {
+                const speed = (index + 1) * 0.5;
+                el.style.transform += ` translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
     </script>
 </body>
 </html>
