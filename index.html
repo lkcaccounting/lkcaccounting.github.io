@@ -3,949 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LKC Accounting | Ledger & Knowledge Consulting</title>
+    <title>Cookie Policy | LKC Accounting</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                        },
-                        accent: {
-                            50: '#fff7ed',
-                            100: '#ffedd5',
-                            200: '#fed7aa',
-                            300: '#fdba74',
-                            400: '#fb923c',
-                            500: '#f97316',
-                            600: '#ea580c',
-                            700: '#c2410c',
-                            800: '#9a3412',
-                            900: '#7c2d12',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        html {
-            scroll-behavior: smooth;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 50%, #0ea5e9 100%);
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+            color: white;
         }
-        .hero-pattern {
-            background-color: #0c4a6e;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2303649a' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        
+        .font-display {
+            font-family: 'Playfair Display', serif;
         }
-        .card-hover {
-            transition: all 0.3s ease;
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .cookie-type {
+            border-left: 3px solid #667eea;
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 antialiased">
+<body>
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center">
-                        <i data-lucide="book-open" class="w-6 h-6 text-white"></i>
+    <nav class="fixed top-0 left-0 w-full z-50 glass-card py-4">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center transform group-hover:rotate-12 transition-transform">
+                        <i data-lucide="calculator" class="w-6 h-6 text-white"></i>
                     </div>
                     <div>
-                        <span class="text-xl font-bold text-gray-900">LKC</span>
-                        <span class="text-sm text-gray-500 block -mt-1">Accounting</span>
-                        <span class="text-xs text-gray-400 block">Ledger & Knowledge Consulting</span>
+                        <h1 class="font-bold text-xl tracking-tight">LKC</h1>
+                        <p class="text-xs text-gray-400">Accounting</p>
                     </div>
+                </a>
+                
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="index.html#services" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Services</a>
+                    <a href="index.html#about" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="index.html#testimonials" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Testimonials</a>
+                    <a href="index.html#contact" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</a>
                 </div>
                 
-                <!-- Desktop Menu -->
-                <div class="hidden lg:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-600 hover:text-primary-600 font-medium transition-colors">Home</a>
-                    <a href="#services" class="text-gray-600 hover:text-primary-600 font-medium transition-colors">Services</a>
-                    <a href="#about" class="text-gray-600 hover:text-primary-600 font-medium transition-colors">About</a>
-                    <a href="#testimonials" class="text-gray-600 hover:text-primary-600 font-medium transition-colors">Testimonials</a>
-                    <a href="#contact" class="text-gray-600 hover:text-primary-600 font-medium transition-colors">Contact</a>
-                    <a href="#privacy" class="text-gray-600 hover:text-primary-600 font-medium transition-colors">Privacy</a>
-                    <a href="#terms" class="text-gray-600 hover:text-primary-600 font-medium transition-colors">Terms</a>
-                    <a href="#cookies" class="text-gray-600 hover:text-primary-600 font-medium transition-colors">Cookies</a>
-                </div>
-
-                <!-- CTA Button -->
-                <div class="hidden lg:flex items-center">
-                    <a href="#contact" class="gradient-bg text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg hover:shadow-primary-500/25 transition-all duration-300">
-                        Get Started
-                    </a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                    <i data-lucide="menu" class="w-6 h-6 text-gray-600"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t">
-            <div class="px-4 py-4 space-y-3">
-                <a href="#home" class="block py-2 text-gray-600 hover:text-primary-600 font-medium">Home</a>
-                <a href="#services" class="block py-2 text-gray-600 hover:text-primary-600 font-medium">Services</a>
-                <a href="#about" class="block py-2 text-gray-600 hover:text-primary-600 font-medium">About</a>
-                <a href="#testimonials" class="block py-2 text-gray-600 hover:text-primary-600 font-medium">Testimonials</a>
-                <a href="#contact" class="block py-2 text-gray-600 hover:text-primary-600 font-medium">Contact</a>
-                <a href="#privacy" class="block py-2 text-gray-600 hover:text-primary-600 font-medium">Privacy Policy</a>
-                <a href="#terms" class="block py-2 text-gray-600 hover:text-primary-600 font-medium">Terms of Service</a>
-                <a href="#cookies" class="block py-2 text-gray-600 hover:text-primary-600 font-medium">Cookie Policy</a>
-                <a href="#contact" class="gradient-bg text-white px-6 py-3 rounded-xl font-semibold inline-block mt-4">Get Started</a>
+                <a href="index.html#contact" class="hidden md:flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full text-sm font-semibold hover:shadow-lg hover:shadow-indigo-500/30 transition-all">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                    Get Started
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center hero-pattern overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-800/80 to-primary-600/60"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-                        <i data-lucide="award" class="w-4 h-4 text-accent-400"></i>
-                        <span class="text-white/90 text-sm font-medium">Trusted by 100+ Businesses</span>
-                    </div>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-                        Your Trusted Partner in
-                        <span class="text-accent-400">Financial Success</span>
-                    </h1>
-                    <p class="text-lg sm:text-xl text-primary-100 mb-8 max-w-xl mx-auto lg:mx-0">
-                        LKC Accounting (Ledger & Knowledge Consulting) provides comprehensive accounting solutions tailored to small business owners. Let us handle the numbers while you focus on growth.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="#contact" class="gradient-bg text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl hover:shadow-primary-500/25 transition-all duration-300 flex items-center justify-center gap-2">
-                            <i data-lucide="calendar" class="w-5 h-5"></i>
-                            Free Consultation
-                        </a>
-                        <a href="#services" class="bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 flex items-center justify-center gap-2">
-                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                            Our Services
-                        </a>
-                    </div>
-                    <!-- Stats -->
-                    <div class="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-white/20">
-                        <div class="text-center lg:text-left">
-                            <div class="text-3xl font-bold text-white">2025</div>
-                            <div class="text-primary-200 text-sm">Founded</div>
-                        </div>
-                        <div class="text-center lg:text-left">
-                            <div class="text-3xl font-bold text-white">100+</div>
-                            <div class="text-primary-200 text-sm">Happy Clients</div>
-                        </div>
-                        <div class="text-center lg:text-left">
-                            <div class="text-3xl font-bold text-white">4.9★</div>
-                            <div class="text-primary-200 text-sm">Client Rating</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Hero Image -->
-                <div class="hidden lg:block">
-                    <div class="relative">
-                        <div class="absolute -top-4 -left-4 w-72 h-72 bg-accent-500/30 rounded-full blur-3xl"></div>
-                        <div class="absolute -bottom-4 -right-4 w-72 h-72 bg-primary-400/30 rounded-full blur-3xl"></div>
-                        <img src="http://static.photos/workspace/640x360/42" alt="Accounting Workspace" class="relative rounded-2xl shadow-2xl w-full h-auto">
-                        <!-- Floating Cards -->
-                        <div class="absolute -left-8 top-1/4 bg-white rounded-xl shadow-xl p-4 animate-bounce" style="animation-duration: 3s;">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                    <i data-lucide="trending-up" class="w-5 h-5 text-green-600"></i>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-gray-500">Growth</div>
-                                    <div class="font-bold text-gray-900">+35%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="absolute -right-4 bottom-1/4 bg-white rounded-xl shadow-xl p-4 animate-bounce" style="animation-duration: 4s;">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
-                                    <i data-lucide="shield-check" class="w-5 h-5 text-primary-600"></i>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-gray-500">Secure</div>
-                                    <div class="font-bold text-gray-900">100%</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="relative pt-32 pb-20">
+        <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-16">
-                <span class="text-primary-600 font-semibold text-sm uppercase tracking-wider">Our Services</span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">Comprehensive Financial Solutions</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">From startups to enterprises, we provide end-to-end accounting services tailored to your unique needs.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service Card 1 -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
-                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-6">
-                        <i data-lucide="folder-search" class="w-7 h-7 text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Accounting Records Cleanup</h3>
-                    <p class="text-gray-600 mb-4">Fix messy Excel files, reconcile cash, sales, and expenses, and restore missing or inconsistent records.</p>
-                    <a href="#contact" class="text-primary-600 font-semibold hover:text-primary-700 flex items-center gap-1">
-                        Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <!-- Service Card 2 -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
-                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-6">
-                        <i data-lucide="alert-circle" class="w-7 h-7 text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Loss & Leakage Reviews</h3>
-                    <p class="text-gray-600 mb-4">Identify unexplained losses, check internal controls, and highlight weak areas in cash handling.</p>
-                    <a href="#contact" class="text-primary-600 font-semibold hover:text-primary-700 flex items-center gap-1">
-                        Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <!-- Service Card 3 -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
-                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-6">
-                        <i data-lucide="book-open" class="w-7 h-7 text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Bookkeeping Support</h3>
-                    <p class="text-gray-600 mb-4">Ongoing tracking of income & expenses, simple monthly summaries, and owner-friendly reports.</p>
-                    <a href="#contact" class="text-primary-600 font-semibold hover:text-primary-700 flex items-center gap-1">
-                        Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
-
-                <!-- Service Card 4 -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
-                    <div class="w-14 h-14 gradient-bg rounded-xl flex items-center justify-center mb-6">
-                        <i data-lucide="lightbulb" class="w-7 h-7 text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Accounting Advisory & Consulting</h3>
-                    <p class="text-gray-600 mb-4">Business performance reviews, pricing & cost guidance, and financial decision support.</p>
-                    <a href="#contact" class="text-primary-600 font-semibold hover:text-primary-700 flex items-center gap-1">
-                        Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                </div>
+                <span class="inline-block px-4 py-2 rounded-full glass-card text-sm font-medium text-indigo-400 mb-4">Legal</span>
+                <h1 class="font-display text-4xl md:text-6xl font-bold mb-6">Cookie <span class="gradient-text">Policy</span></h1>
+                <p class="text-gray-400">Last updated: January 2025</p>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="relative">
-                    <div class="absolute -top-4 -left-4 w-72 h-72 bg-accent-500/20 rounded-full blur-3xl"></div>
-                    <img src="http://static.photos/office/640x360/133" alt="About LKC Accounting" class="relative rounded-2xl shadow-2xl w-full">
-                    <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 max-w-xs">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-primary-600"></i>
-                            </div>
-                            <div>
-                                <div class="font-bold text-gray-900">100+ Happy Clients</div>
-                                <div class="text-sm text-gray-500">Small Business Specialists</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <span class="text-primary-600 font-semibold text-sm uppercase tracking-wider">About Us</span>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-6">Building Trust Through Financial Excellence</h2>
-                    <p class="text-lg text-gray-600 mb-6">
-                        Founded in 2025, LKC Accounting (Ledger & Knowledge Consulting) has been dedicated to providing top-tier financial services to small business owners across Kenya. Our team of certified professionals combines expertise with personalized service to deliver accurate, timely, and insightful financial solutions.
-                    </p>
-                    <p class="text-lg text-gray-600 mb-8">
-                        We believe that sound financial management is the foundation of business success. That's why we go beyond traditional accounting to become your trusted financial partner.
-                    </p>
-                    
-                    <div class="grid sm:grid-cols-2 gap-6 mb-8">
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <i data-lucide="check" class="w-4 h-4 text-primary-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Certified Professionals</h4>
-                                <p class="text-gray-600 text-sm">Team of CPAs and financial experts</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <i data-lucide="check" class="w-4 h-4 text-primary-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Cloud-Based Solutions</h4>
-                                <p class="text-gray-600 text-sm">Modern, secure, and accessible anywhere</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <i data-lucide="check" class="w-4 h-4 text-primary-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">24/7 Support</h4>
-                                <p class="text-gray-600 text-sm">Round-the-clock assistance for you</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <i data-lucide="check" class="w-4 h-4 text-primary-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Tailored Approach</h4>
-                                <p class="text-gray-600 text-sm">Solutions designed for your needs</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <a href="#contact" class="gradient-bg text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-primary-500/25 transition-all duration-300 inline-flex items-center gap-2">
-                        <i data-lucide="users" class="w-5 h-5"></i>
-                        Meet Our Team
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="py-20 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-accent-400 font-semibold text-sm uppercase tracking-wider">Why Choose Us</span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2 mb-4">What Sets Us Apart</h2>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">We combine expertise, technology, and personalized service to deliver exceptional results.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center p-8 rounded-2xl bg-gray-800/50 border border-gray-700">
-                    <div class="w-20 h-20 bg-primary-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="users" class="w-10 h-10 text-primary-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Small Business Focus</h3>
-                    <p class="text-gray-400">Specialized accounting services tailored for Mama Mbogas, barbers, salons, and local businesses.</p>
-                </div>
-                <div class="text-center p-8 rounded-2xl bg-gray-800/50 border border-gray-700">
-                    <div class="w-20 h-20 bg-accent-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="lock" class="w-10 h-10 text-accent-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Secure & Confidential</h3>
-                    <p class="text-gray-400">Bank-level security measures to protect your sensitive financial data.</p>
-                </div>
-                <div class="text-center p-8 rounded-2xl bg-gray-800/50 border border-gray-700">
-                    <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="heart" class="w-10 h-10 text-green-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Local Expertise</h3>
-                    <p class="text-gray-400">We understand the unique challenges facing Kenyan small business owners.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-primary-600 font-semibold text-sm uppercase tracking-wider">Testimonials</span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">What Our Clients Say</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Don't just take our word for it - hear from some of our satisfied clients.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                    </div>
-                    <p class="text-gray-600 mb-6">"LKC Accounting helped me organize my vegetable business finances. Before, I didn't know if I was making profit or loss. Now I have clear records and my business is growing!"</p>
-                    <div class="flex items-center gap-4">
-                        <img src="http://static.photos/people/200x200/42" alt="Eunice Waweru" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <div class="font-semibold text-gray-900">Eunice Waweru</div>
-                            <div class="text-sm text-gray-500">Mama Mboga</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                    </div>
-                    <p class="text-gray-600 mb-6">"As a barber, I know hair, not numbers. LKC handles all my bookkeeping and helped me identify where I was losing money. My profits increased by 30% in 3 months!"</p>
-                    <div class="flex items-center gap-4">
-                        <img src="http://static.photos/people/200x200/133" alt="Antony KIprop" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <div class="font-semibold text-gray-900">Antony KIprop</div>
-                            <div class="text-sm text-gray-500">Barber</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                    </div>
-                    <p class="text-gray-600 mb-6">"LKC's loss and leakage review revealed I was losing meat worth Ksh 20,000 monthly! They helped fix my records and implement better controls. Highly recommended for butchery owners."</p>
-                    <div class="flex items-center gap-4">
-                        <img src="http://static.photos/people/200x200/77" alt="Andrew Tum" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <div class="font-semibold text-gray-900">Andrew Tum</div>
-                            <div class="text-sm text-gray-500">Butchery Owner</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 4 -->
-                <div class="bg-white rounded-2xl p-8 shadow-lg">
-                    <div class="flex items-center gap-1 mb-4">
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                        <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-yellow-400"></i>
-                    </div>
-                    <p class="text-gray-600 mb-6">"Running a salon is hard enough without worrying about taxes and payroll. LKC handles everything for me - from bookkeeping to tax filing. They truly understand small business owners!"</p>
-                    <div class="flex items-center gap-4">
-                        <img src="http://static.photos/people/200x200/99" alt="Amina" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <div class="font-semibold text-gray-900">Amina</div>
-                            <div class="text-sm text-gray-500">Saloonist</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16">
-                <div>
-                    <span class="text-primary-600 font-semibold text-sm uppercase tracking-wider">Contact Us</span>
-                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-6">Get In Touch</h2>
-                    <p class="text-lg text-gray-600 mb-8">Ready to take control of your finances? Contact us today for a free consultation.</p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="map-pin" class="w-6 h-6 text-primary-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Visit Us</h4>
-                                <p class="text-gray-600">Kenya<br>Serveing small business owners nationwide</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="phone" class="w-6 h-6 text-primary-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Call Us</h4>
-                                <p class="text-gray-600">0748349151<br>Mon-Sat: 8AM - 7PM</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="mail" class="w-6 h-6 text-primary-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900">Email Us</h4>
-                                <p class="text-gray-600">info.lkcacc@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8">
-                        <h4 class="font-semibold text-gray-900 mb-4">Follow Us</h4>
-                        <div class="flex gap-4">
-                            <a href="https://www.tiktok.com/@lkcaccounting" target="_blank" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-primary-100 hover:text-primary-600 transition-colors">
-                                <i data-lucide="video" class="w-5 h-5"></i>
-                            </a>
-                            <a href="https://www.instagram.com/lkcaccounting" target="_blank" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-primary-100 hover:text-primary-600 transition-colors">
-                                <i data-lucide="instagram" class="w-5 h-5"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/lkcaccounting" target="_blank" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-primary-100 hover:text-primary-600 transition-colors">
-                                <i data-lucide="linkedin" class="w-5 h-5"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+    <!-- Content Section -->
+    <section class="relative py-16">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="glass-card rounded-3xl p-8 md:p-12 space-y-8">
                 
-                <!-- Contact Form -->
-                <div class="bg-white rounded-2xl shadow-xl p-8">
-                    <h3 class="text-xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
-                    <form id="contactForm" class="space-y-6">
-                        <div class="grid sm:grid-cols-2 gap-6">
-                            <div>
-                                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                                <input type="text" id="firstName" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors" placeholder="Your first name" required>
-                            </div>
-                            <div>
-                                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                                <input type="text" id="lastName" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors" placeholder="Your last name" required>
-                            </div>
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                            <input type="tel" id="phone" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors" placeholder="0748XXXXXX" required>
-                        </div>
-                        <div>
-                            <label for="service" class="block text-sm font-medium text-gray-700 mb-2">Service Interested In</label>
-                            <select id="service" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors">
-                                <option value="">Select a service</option>
-                                <option value="records-cleanup">Accounting Records Cleanup</option>
-                                <option value="loss-leakage">Loss & Leakage Reviews</option>
-                                <option value="bookkeeping">Bookkeeping Support</option>
-                                <option value="advisory">Accounting Advisory & Consulting</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors" placeholder="Tell us about your business and how we can help..." required></textarea>
-                        </div>
-                        <button type="submit" class="w-full gradient-bg text-white py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-primary-500/25 transition-all duration-300 flex items-center justify-center gap-2">
-                            <i data-lucide="send" class="w-5 h-5"></i>
-                            Send Us a Message
-                        </button>
-                    </form>
+                <div>
+                    <h2 class="text-2xl font-bold mb-4">1. What Are Cookies</h2>
+                    <p class="text-gray-400 leading-relaxed">
+                        Cookies are small text files that are stored on your computer or mobile device when you visit a website. They are widely used to make websites work more efficiently and provide information to the owners of the site. Cookies help us provide you with a good experience when you browse our website and also allow us to improve our site.
+                    </p>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 gradient-bg">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">Ready to Optimize Your Financial Future?</h2>
-            <p class="text-lg text-primary-100 mb-8 max-w-2xl mx-auto">Join hundreds of businesses who trust LKC Accounting for their financial needs. Schedule your free consultation today.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#contact" class="bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300">
-                    Schedule Free Consultation
-                </a>
-                <a href="#services" class="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300">
-                    View All Services
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Privacy Policy Section -->
-    <section id="privacy" class="py-20 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Privacy Policy</h2>
-                <p class="text-gray-600">How we collect, use, and protect your information</p>
-            </div>
-            
-            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-                <div class="prose prose-lg max-w-none text-gray-600">
-                    <p class="text-gray-500 mb-8">Last updated: January 2025</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
-                    <p class="mb-6">Welcome to LKC Accounting ("we," "our," or "us"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our accounting services.</p>
-                    <p class="mb-6">By accessing or using our services, you acknowledge that you have read and understood this Privacy Policy. If you do not agree with the terms outlined here, please discontinue use of our website and services immediately.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">2. Information We Collect</h2>
-                    <p class="mb-4">We collect information that you provide directly to us, including:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li><strong>Personal Information:</strong> Name, email address, phone number, business name, and physical address when you contact us or request our services.</li>
-                        <li><strong>Financial Information:</strong> Financial records, tax information, bank statements, and other accounting data that you provide for our services.</li>
-                        <li><strong>Communication Records:</strong> Copies of correspondence, emails, and other communications between you and our team.</li>
-                        <li><strong>Usage Data:</strong> Information about how you use our website, including browsing history, IP address, browser type, and access times.</li>
-                    </ul>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">3. How We Use Your Information</h2>
-                    <p class="mb-4">We use the information we collect for the following purposes:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li>To provide, maintain, and improve our accounting and consulting services</li>
-                        <li>To respond to your comments, questions, and requests</li>
-                        <li>To communicate with you about services, updates, and promotional materials</li>
-                        <li>To monitor and analyze trends, usage, and activities in connection with our services</li>
-                        <li>To detect, investigate, and prevent fraudulent transactions and other illegal activities</li>
-                        <li>To comply with legal obligations and protect our rights and interests</li>
-                    </ul>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">4. Information Sharing and Disclosure</h2>
-                    <p class="mb-4">We do not sell, trade, or otherwise transfer your personal information to outside parties except in the following circumstances:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li><strong>Service Providers:</strong> We may share your information with third-party vendors who perform services on our behalf, such as cloud hosting providers and payment processors.</li>
-                        <li><strong>Legal Requirements:</strong> We may disclose your information when required by law, such as in response to subpoenas, court orders, or other legal processes.</li>
-                        <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</li>
-                        <li><strong>With Your Consent:</strong> We may share your information with your explicit consent or as otherwise disclosed at the time of collection.</li>
-                    </ul>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">5. Data Security</h2>
-                    <p class="mb-6">We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. These measures include:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li>Encryption of sensitive financial data</li>
-                        <li>Secure socket layer (SSL) technology for website transactions</li>
-                        <li>Regular security assessments and updates</li>
-                        <li>Restricted access to personal information among our staff</li>
-                        <li>Ongoing training for employees on data protection practices</li>
-                    </ul>
-                    <p class="mb-6">While we strive to protect your information, no method of transmission over the Internet or electronic storage is 100% secure. We cannot guarantee absolute security.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">6. Data Retention</h2>
-                    <p class="mb-6">We will retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law. Financial records will be retained in accordance with applicable tax and accounting regulations.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">7. Your Rights</h2>
-                    <p class="mb-4">You have the following rights regarding your personal information:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li><strong>Access:</strong> You have the right to request copies of your personal information.</li>
-                        <li><strong>Correction:</strong> You have the right to request that we correct any information you believe is inaccurate.</li>
-                        <li><strong>Deletion:</strong> You have the right to request that we delete your personal information, subject to legal retention requirements.</li>
-                        <li><strong>Opt-Out:</strong> You have the right to opt-out of receiving promotional communications from us.</li>
-                    </ul>
-                    <p class="mb-6">To exercise any of these rights, please contact us at info.lkcacc@gmail.com or 0748349151.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">8. Cookies and Tracking Technologies</h2>
-                    <p class="mb-6">Our website may use cookies and similar tracking technologies to collect information about your browsing activities. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">9. Children's Privacy</h2>
-                    <p class="mb-6">Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If you believe we have collected information from a child, please contact us immediately.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">10. Third-Party Links</h2>
-                    <p class="mb-6">Our website may contain links to third-party websites, applications, and services. We are not responsible for the privacy practices or the content of these third parties. We encourage you to review their privacy policies before providing any information.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">11. Changes to This Privacy Policy</h2>
-                    <p class="mb-6">We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. We encourage you to review this Privacy Policy periodically for any changes.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">12. Contact Us</h2>
-                    <p class="mb-4">If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
-                    <ul class="list-none pl-0 mb-6 space-y-2">
-                        <li><strong>Email:</strong> info.lkcacc@gmail.com</li>
-                        <li><strong>Phone:</strong> 0748349151</li>
+                <div>
+                    <h2 class="text-2xl font-bold mb-4">2. How We Use Cookies</h2>
+                    <p class="text-gray-400 leading-relaxed mb-4">
+                        LKC Accounting uses cookies for several purposes, including:
+                    </p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="settings" class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5"></i>
+                            <span><strong>Essential Cookies:</strong> These cookies are necessary for the website to function properly. They enable basic functions like page navigation and access to secure areas of the website.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="bar-chart-2" class="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5"></i>
+                            <span><strong>Analytics Cookies:</strong> These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. This helps us improve our website.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="zap" class="w-5 h-5 text-pink-400 flex-shrink-0 mt-0.5"></i>
+                            <span><strong>Performance Cookies:</strong> These cookies are used to enhance the performance and functionality of our website but are non-essential to their use.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="target" class="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5"></i>
+                            <span><strong>Marketing Cookies:</strong> These cookies are used to track visitors across websites. The intention is to display ads that are relevant and engaging for the individual user.</span>
+                        </li>
                     </ul>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Terms of Service Section -->
-    <section id="terms" class="py-20">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Terms of Service</h2>
-                <p class="text-gray-600">Agreement between LKC Accounting and our valued clients</p>
-            </div>
-            
-            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-                <div class="prose prose-lg max-w-none text-gray-600">
-                    <p class="text-gray-500 mb-8">Last updated: January 2025</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>
-                    <p class="mb-6">By accessing and using the services provided by LKC Accounting ("Ledger & Knowledge Consulting"), you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
-                    <p class="mb-6">These Terms of Service constitute a legally binding agreement between you ("Client," "you," or "your") and LKC Accounting ("Company," "we," "us," or "our") regarding your use of our accounting, bookkeeping, and financial consulting services.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">2. Description of Services</h2>
-                    <p class="mb-4">LKC Accounting provides the following services:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li>Accounting Records Cleanup and Organization</li>
-                        <li>Loss & Leakage Reviews and Analysis</li>
-                        <li>Bookkeeping Support and Maintenance</li>
-                        <li>Accounting Advisory and Consulting Services</li>
-                        <li>Financial Analysis and Reporting</li>
-                        <li>Tax Preparation Assistance</li>
-                    </ul>
-                    <p class="mb-6">We reserve the right to modify, suspend, or discontinue any aspect of our services at any time with reasonable notice.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">3. Client Responsibilities</h2>
-                    <p class="mb-4">As a client of LKC Accounting, you agree to:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li>Provide accurate, complete, and timely information necessary for us to perform our services</li>
-                        <li>Maintain proper documentation and records as required by applicable laws and regulations</li>
-                        <li>Review all reports, analyses, and deliverables provided by us and notify us of any discrepancies within 14 days</li>
-                        <li>Make timely payments for services rendered as agreed upon in our engagement letter</li>
-                        <li>Maintain the confidentiality of any login credentials or access codes provided</li>
-                        <li>Comply with all applicable tax laws and regulations regarding your business operations</li>
-                    </ul>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">4. Engagement and Payment Terms</h2>
-                    <p class="mb-4"><strong>Engagement Process:</strong></p>
-                    <ul class="list-disc pl-6 mb-4 space-y-2">
-                        <li>All services require a written engagement letter or agreement signed by both parties</li>
-                        <li>Services begin upon receipt of the signed engagement letter and any required retainer</li>
-                        <li>Initial consultations are provided at no charge for new clients</li>
-                    </ul>
-                    <p class="mb-4"><strong>Payment Terms:</strong></p>
-                    <ul class="list-disc pl-6 mb-4 space-y-2">
-                        <li>Payment is due upon receipt of invoice unless otherwise agreed in writing</li>
-                        <li>Retainers are required for ongoing monthly services</li>
-                        <li>Hourly rates range from KES 2,000 to KES 5,000 depending on service complexity</li>
-                        <li>Project-based pricing is available upon request</li>
-                    </ul>
-                    <p class="mb-6"><strong>Late Payments:</strong> A late fee of 5% per month will be applied to invoices outstanding for more than 30 days. We reserve the right to suspend services for accounts with outstanding balances exceeding 60 days.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">5. Confidentiality and Non-Disclosure</h2>
-                    <p class="mb-6">Both parties agree to maintain the strictest confidentiality regarding all information shared during the course of the engagement. This includes, but is not limited to:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li>Financial records, statements, and tax information</li>
-                        <li>Business processes and strategies</li>
-                        <li>Pricing and fee structures</li>
-                        <li>Client lists and contact information</li>
-                        <li>Proprietary methods and analytical frameworks</li>
-                    </ul>
-                    <p class="mb-6">This confidentiality obligation survives the termination of our engagement for a period of three (3) years.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">6. Intellectual Property Rights</h2>
-                    <p class="mb-4">All work product, deliverables, templates, methodologies, and intellectual property developed by LKC Accounting during the engagement remain our exclusive property. This includes:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li>Custom templates, spreadsheets, and financial models</li>
-                        <li>Analytical frameworks and methodologies</li>
-                        <li>Training materials and documentation</li>
-                        <li>Software applications and tools</li>
-                    </ul>
-                    <p class="mb-6">We grant you a non-exclusive, non-transferable license to use the work product solely for your internal business purposes during and after the engagement.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">7. Limitation of Liability</h2>
-                    <p class="mb-6"><strong>Scope of Liability:</strong> Our liability for any claims arising out of our services shall be limited to the total fees paid by you during the twelve (12) months preceding the claim.</p>
-                    <p class="mb-6"><strong>Exclusions from Liability:</strong> We shall not be liable for any damages resulting from your failure to provide accurate or complete information, any delays caused by circumstances beyond our reasonable control, or any losses arising from business decisions made based on our advice.</p>
-                    <p class="mb-6"><strong>Professional Standards:</strong> Our services are performed in accordance with generally accepted accounting principles and professional standards. We do not guarantee any specific outcomes or results.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">8. Warranties and Disclaimers</h2>
-                    <p class="mb-6"><strong>Our Warranties:</strong> We warrant that our services will be performed in a professional and workmanlike manner by qualified personnel. We will use commercially reasonable efforts to meet agreed-upon deadlines and deliver accurate work product.</p>
-                    <p class="mb-6"><strong>Disclaimer:</strong> EXCEPT AS EXPRESSLY SET FORTH IN THESE TERMS, WE MAKE NO WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">9. Termination</h2>
-                    <p class="mb-4"><strong>Termination by You:</strong> You may terminate our engagement at any time by providing written notice. Termination will be effective 14 days from receipt of notice. You will be responsible for payment of all services performed up to the termination date.</p>
-                    <p class="mb-4"><strong>Termination by Us:</strong> We may terminate our engagement if you fail to pay invoices within 60 days, provide false or misleading information, or fail to cooperate in providing necessary information.</p>
-                    <p class="mb-6"><strong>Effect of Termination:</strong> Upon termination, we will provide you with copies of your records and work product within 14 days.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">10. Dispute Resolution</h2>
-                    <p class="mb-4">Any disputes arising from these Terms or our services shall be resolved as follows:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li><strong>Negotiation:</strong> Parties will first attempt to resolve disputes through good-faith negotiation</li>
-                        <li><strong>Mediation:</strong> If negotiation fails, parties agree to submit to non-binding mediation</li>
-                        <li><strong>Arbitration:</strong> If mediation fails, disputes will be resolved through binding arbitration in accordance with the Arbitration Act of Kenya</li>
-                        <li><strong>Jurisdiction:</strong> These Terms shall be governed by the laws of Kenya</li>
-                    </ul>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">11. Indemnification</h2>
-                    <p class="mb-6">You agree to indemnify, defend, and hold harmless LKC Accounting, its officers, directors, employees, and agents from and against any and all claims, damages, losses, costs, and expenses arising out of your breach of these Terms or your violation of any applicable laws.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">12. Contact Information</h2>
-                    <p class="mb-4">If you have any questions about these Terms of Service, please contact us:</p>
-                    <ul class="list-none pl-0 mb-6 space-y-2">
-                        <li><strong>Email:</strong> info.lkcacc@gmail.com</li>
-                        <li><strong>Phone:</strong> 0748349151</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Cookie Policy Section -->
-    <section id="cookies" class="py-20 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Cookie Policy</h2>
-                <p class="text-gray-600">How we use cookies and similar technologies</p>
-            </div>
-            
-            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-                <div class="prose prose-lg max-w-none text-gray-600">
-                    <p class="text-gray-500 mb-8">Last updated: January 2025</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
-                    <p class="mb-6">This Cookie Policy explains how LKC Accounting ("we," "our," or "us") uses cookies and similar tracking technologies when you visit our website. This policy should be read together with our Privacy Policy and Terms of Service.</p>
-                    <p class="mb-6">By continuing to use our website, you consent to the use of cookies as described in this policy. If you do not agree to our use of cookies, you should adjust your browser settings or discontinue use of our website.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">2. What Are Cookies?</h2>
-                    <p class="mb-6">Cookies are small text files that are stored on your device (computer, tablet, or mobile phone) when you visit a website. They are widely used by website owners to make websites work more efficiently and provide information to the website owners.</p>
-                    <p class="mb-6">Cookies can be:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li><strong>Session Cookies:</strong> Temporary cookies that are deleted when you close your browser</li>
-                        <li><strong>Persistent Cookies:</strong> Cookies that remain on your device for a set period or until you delete them</li>
-                        <li><strong>First-Party Cookies:</strong> Cookies set by the website you are visiting</li>
-                        <li><strong>Third-Party Cookies:</strong> Cookies set by a domain other than the one you are visiting</li>
-                    </ul>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">3. Types of Cookies We Use</h2>
+                <div>
+                    <h2 class="text-2xl font-bold mb-4">3. Types of Cookies We Use</h2>
                     
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">3.1 Essential Cookies</h3>
-                    <p class="mb-4">These cookies are necessary for the website to function properly. They enable core functionality such as:</p>
-                    <ul class="list-disc pl-6 mb-4 space-y-2">
-                        <li>Page navigation and access to secure areas of the website</li>
-                        <li>Remembering your preferences and settings</li>
-                        <li>Maintaining your session while using our website</li>
-                        <li>Load balancing and server management</li>
-                    </ul>
-                    <p class="mb-6"><strong>These cookies cannot be switched off as they are essential for the website to work.</strong></p>
+                    <div class="space-y-4">
+                        <div class="cookie-type pl-4 py-2">
+                            <h3 class="font-semibold text-lg mb-2">Session Cookies</h3>
+                            <p class="text-gray-400 text-sm">These cookies are temporary and expire once you close your browser. They help us track your movement from page to page so you don't get asked for the same information you've already given to the site.</p>
+                        </div>
+                        
+                        <div class="cookie-type pl-4 py-2">
+                            <h3 class="font-semibold text-lg mb-2">Persistent Cookies</h3>
+                            <p class="text-gray-400 text-sm">These cookies remain on your device for a set period or until you manually delete them. They help us remember your preferences and settings when you return to our website.</p>
+                        </div>
+                        
+                        <div class="cookie-type pl-4 py-2">
+                            <h3 class="font-semibold text-lg mb-2">First-Party Cookies</h3>
+                            <p class="text-gray-400 text-sm">These are cookies that we place on your device directly. They are used to maintain your session and remember your preferences.</p>
+                        </div>
+                        
+                        <div class="cookie-type pl-4 py-2">
+                            <h3 class="font-semibold text-lg mb-2">Third-Party Cookies</h3>
+                            <p class="text-gray-400 text-sm">These cookies are placed on your device by our partners and service providers. They may include analytics services like Google Analytics.</p>
+                        </div>
+                    </div>
+                </div>
 
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">3.2 Performance Cookies</h3>
-                    <p class="mb-4">These cookies help us understand how visitors interact with our website by collecting information anonymously. This helps us improve our website performance:</p>
-                    <ul class="list-disc pl-6 mb-4 space-y-2">
-                        <li>Which pages are visited most frequently</li>
-                        <li>How long users spend on each page</li>
-                        <li>Error messages encountered by users</li>
-                        <li>Traffic sources and navigation patterns</li>
-                        <li>Overall website performance and loading times</li>
-                    </ul>
-                    <p class="mb-6">We use this data to analyze trends, administer the website, track user movements, and gather demographic information.</p>
-
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">3.3 Functionality Cookies</h3>
-                    <p class="mb-4">These cookies allow us to remember choices you make and provide enhanced, personalized features:</p>
-                    <ul class="list-disc pl-6 mb-4 space-y-2">
-                        <li>Remembering your preferred language or region</li>
-                        <li>Customizing page layouts and content</li>
-                        <li>Remembering form information you've previously entered</li>
-                        <li>Saving your preferences for future visits</li>
-                    </ul>
-
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">3.4 Analytics Cookies</h3>
-                    <p class="mb-4">We use analytics tools to understand how users interact with our website:</p>
-                    <ul class="list-disc pl-6 mb-4 space-y-2">
-                        <li>Track website traffic and user behavior</li>
-                        <li>Measure the effectiveness of our marketing campaigns</li>
-                        <li>Identify popular content and features</li>
-                        <li>Understand user demographics and interests</li>
-                    </ul>
-
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">3.5 Marketing Cookies</h3>
-                    <p class="mb-4">These cookies are used to track visitors across websites to display relevant advertisements:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li>Building a profile of your interests to show relevant content</li>
-                        <li>Limiting the number of times you see an advertisement</li>
-                        <li>Measuring the effectiveness of advertising campaigns</li>
-                    </ul>
-                    <p class="mb-6"><strong>Note:</strong> Currently, our website does not use marketing cookies for advertising purposes.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">4. Specific Cookies We Use</h2>
-                    
-                    <div class="overflow-x-auto mb-6">
-                        <table class="w-full border-collapse border border-gray-200">
+                <div>
+                    <h2 class="text-2xl font-bold mb-4">4. Specific Cookies We Use</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
                             <thead>
-                                <tr class="bg-gray-100">
-                                    <th class="border border-gray-200 px-4 py-3 text-left font-semibold text-gray-900">Cookie Name</th>
-                                    <th class="border border-gray-200 px-4 py-3 text-left font-semibold text-gray-900">Purpose</th>
-                                    <th class="border border-gray-200 px-4 py-3 text-left font-semibold text-gray-900">Duration</th>
+                                <tr class="border-b border-white/10">
+                                    <th class="pb-3 text-gray-300">Cookie Name</th>
+                                    <th class="pb-3 text-gray-300">Purpose</th>
+                                    <th class="pb-3 text-gray-300">Duration</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="border border-gray-200 px-4 py-3">session_id</td>
-                                    <td class="border border-gray-200 px-4 py-3">Maintain user session</td>
-                                    <td class="border border-gray-200 px-4 py-3">Session</td>
+                            <tbody class="text-gray-400 text-sm">
+                                <tr class="border-b border-white/5">
+                                    <td class="py-3">_ga</td>
+                                    <td>Google Analytics - Used to distinguish users</td>
+                                    <td>2 years</td>
                                 </tr>
-                                <tr>
-                                    <td class="border border-gray-200 px-4 py-3">cookie_consent</td>
-                                    <td class="border border-gray-200 px-4 py-3">Remember cookie preferences</td>
-                                    <td class="border border-gray-200 px-4 py-3">1 year</td>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-3">_gid</td>
+                                    <td>Google Analytics - Used to distinguish users</td>
+                                    <td>24 hours</td>
                                 </tr>
-                                <tr>
-                                    <td class="border border-gray-200 px-4 py-3">_ga</td>
-                                    <td class="border border-gray-200 px-4 py-3">Google Analytics - distinguish users</td>
-                                    <td class="border border-gray-200 px-4 py-3">2 years</td>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-3">session_id</td>
+                                    <td>Maintains your session state</td>
+                                    <td>Session</td>
                                 </tr>
-                                <tr>
-                                    <td class="border border-gray-200 px-4 py-3">_gid</td>
-                                    <td class="border border-gray-200 px-4 py-3">Google Analytics - distinguish users</td>
-                                    <td class="border border-gray-200 px-4 py-3">24 hours</td>
+                                <tr class="border-b border-white/5">
+                                    <td class="py-3">cookie_consent</td>
+                                    <td>Stores your cookie consent preferences</td>
+                                    <td>1 year</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                </div>
 
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">5. Managing Cookies</h2>
-                    <p class="mb-4">You have several options for managing cookies:</p>
-                    
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">5.1 Browser Settings</h3>
-                    <p class="mb-4">Most browsers allow you to view, delete, and block cookies. Instructions for popular browsers:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li><strong>Chrome:</strong> Settings > Privacy and Security > Cookies</li>
-                        <li><strong>Firefox:</strong> Settings > Privacy & Security > Cookies</li>
-                        <li><strong>Safari:</strong> Preferences > Privacy > Cookies</li>
-                        <li><strong>Edge:</strong> Settings > Cookies and Site Permissions</li>
-                    </ul>
-
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">5.2 Third-Party Tools</h3>
-                    <p class="mb-6">You can opt out of specific tracking by installing the Google Analytics Opt-out Browser Add-on or visiting interest-based ad opt-out pages.</p>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">6. Impact of Disabling Cookies</h2>
-                    <p class="mb-4">If you disable or delete cookies:</p>
-                    <ul class="list-disc pl-6 mb-6 space-y-2">
-                        <li>Some features may not work properly</li>
-                        <li>You may need to re-enter information more frequently</li>
-                        <li>Your preferences may not be saved</li>
-                        <li>The website may load more slowly</li>
-                    </ul>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-4">7. Contact Us</h2>
-                    <p class="mb-4">If you have any questions about our use of cookies, please contact us:</p>
-                    <ul class="list-none pl-0 mb-6 space-y-2">
-                        <li><strong>Email:</strong> info.lkcacc@gmail.com</li>
-                        <li><strong>Phone:</strong> 0748349151</li>
+                <div>
+                    <h2 class="text-2xl font-bold mb-4">5. Managing Cookies</h2>
+                    <p class="text-gray-400 leading-relaxed mb-4">
+                        Most web browsers allow you to control cookies through their settings preferences. However, if you limit the ability of websites to set cookies, you may worsen your overall user experience, since it will no longer be personalized to you. It may also stop you from saving customized settings like login information.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed mb-4">
+                        To manage cookies in your browser, follow these links for instructions:
+                    </p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>• <a href="https://support.google.com/chrome/answer/95647" target="_blank" class="text-indigo-400 hover:text-indigo-300">Google Chrome</a></li>
+                        <li>• <a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences" target="_blank" class="text-indigo-400 hover:text-indigo-300">Mozilla Firefox</a></li>
+                        <li>• <a href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac" target="_blank" class="text-indigo-400 hover:text-indigo-300">Safari</a></li>
+                        <li>• <a href="https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies" target="_blank" class="text-indigo-400 hover:text-indigo-300">Internet Explorer</a></li>
                     </ul>
                 </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold mb-4">6. Your Consent</h2>
+                    <p class="text-gray-400 leading-relaxed">
+                        By continuing to use our website, you are agreeing to our placing cookies on your computer in order to analyze the way you use our website. If you do not wish to accept cookies from our website, you should either stop using our website or configure your browser settings to reject cookies. Please note that our website may not function properly if you disable cookies.
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold mb-4">7. Changes to This Cookie Policy</h2>
+                    <p class="text-gray-400 leading-relaxed">
+                        We may update this Cookie Policy from time to time in order to reflect changes to the cookies we use or for other operational, legal, or regulatory reasons. Please re-visit this Cookie Policy regularly to stay informed about our use of cookies and related technologies.
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-bold mb-4">8. Contact Us</h2>
+                    <p class="text-gray-400 leading-relaxed mb-4">
+                        If you have any questions about our use of cookies or other technologies, please contact us at:
+                    </p>
+                    <div class="glass-card rounded-xl p-6">
+                        <p class="text-gray-300"><strong>LKC Accounting</strong></p>
+                        <p class="text-gray-400">Email: <a href="mailto:info.lkcacc@gmail.com" class="text-indigo-400 hover:text-indigo-300">info.lkcacc@gmail.com</a></p>
+                        <p class="text-gray-400">Phone: <a href="tel:+254748349151" class="text-indigo-400 hover:text-indigo-300">0748 349 151</a></p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                <!-- Company Info -->
-                <div>
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center">
-                            <i data-lucide="book-open" class="w-6 h-6 text-white"></i>
+    <footer class="relative py-16 border-t border-white/10 mt-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                            <i data-lucide="calculator" class="w-6 h-6 text-white"></i>
                         </div>
                         <div>
-                            <span class="text-xl font-bold text-white">LKC</span>
-                            <span class="text-sm text-gray-500 block">Accounting</span>
-                            <span class="text-xs text-gray-600 block">Ledger & Knowledge Consulting</span>
+                            <h3 class="font-bold text-xl">LKC Accounting</h3>
+                            <p class="text-xs text-gray-400">Ledger & Knowledge Consulting</p>
                         </div>
                     </div>
-                    <p class="mb-6">Your trusted partner for comprehensive accounting and financial services for small business owners. Building success one ledger at a time.</p>
-                    <div class="flex gap-4">
-                        <a href="https
+                    <p class="text-gray-400 max-w-md mb-6">Professional accounting services for small business owners in Kenya.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="privacy-policy.html" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html" class="text-gray-400 hover:text-white transition-colors">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-400 text-sm">&copy; 2025 LKC Accounting. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
