@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>LKC Accounting | Ledger & Knowledge Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:       #08121f;
+  --navy-mid:   #0e1e33;
+  --navy-card:  #111f35;
+  --navy-light: #162843;
+  --gold:       #b8892a;
+  --gold-bright:#d4a843;
+  --gold-light: #e8c97a;
+  --white:      #f8f6f1;
+  --muted:      #6b7e96;
+  --border:     rgba(184,137,42,0.18);
+  --border-dim: rgba(255,255,255,0.07);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ─── NAVBAR ─────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.25rem 6%;
+  background:rgba(8,18,31,0.82);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:padding .3s;
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;
+  color:var(--gold-bright);text-decoration:none;letter-spacing:.02em;
+}
+.nav-logo span{color:var(--white);font-weight:500}
+.nav-links{display:flex;align-items:center;gap:2.2rem;list-style:none}
+.nav-links a{
+  color:rgba(248,246,241,.65);text-decoration:none;
+  font-size:.82rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--gold-bright)}
+.nav-cta{
+  background:var(--gold) !important;color:var(--navy) !important;
+  padding:.52rem 1.4rem;border-radius:2px;font-weight:600 !important;
+}
+.nav-cta:hover{background:var(--gold-bright) !important;color:var(--navy) !important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--gold-bright);transition:.3s}
+
+/* ─── HERO ─────────────────────────────────── */
+#home{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;overflow:hidden;
+}
+.hero-img{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1800&q=80&fit=crop') center/cover no-repeat;
+  transform:scale(1.06);transition:transform 9s ease;
+}
+.hero-img.loaded{transform:scale(1)}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(110deg,rgba(8,18,31,.93) 42%,rgba(8,18,31,.5) 100%);
+}
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(to right,rgba(184,137,42,.04) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(184,137,42,.04) 1px,transparent 1px);
+  background-size:90px 90px;
+}
+.hero-inner{
+  position:relative;z-index:2;
+  padding:0 6%;padding-top:95px;max-width:700px;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.7rem;
+  font-size:.7rem;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold-bright);margin-bottom:1.6rem;
+  animation:fadeUp .7s ease both;
+}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--gold-bright)}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,5.5vw,5.2rem);font-weight:900;line-height:1.04;
+  color:var(--white);margin-bottom:1.6rem;
+  animation:fadeUp .7s .1s ease both;
+}
+.hero-title em{font-style:italic;color:var(--gold-bright)}
+.hero-sub{
+  font-size:1.05rem;color:rgba(248,246,241,.65);
+  line-height:1.8;max-width:480px;margin-bottom:2.5rem;
+  animation:fadeUp .7s .2s ease both;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .7s .3s ease both}
+
+/* ─── BUTTONS ────────────────────────────── */
+.btn-gold{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--gold);color:var(--navy);
+  padding:.9rem 2.1rem;font-weight:600;font-size:.88rem;
+  letter-spacing:.05em;text-decoration:none;border-radius:2px;
+  transition:background .2s,transform .2s;
+}
+.btn-gold:hover{background:var(--gold-bright);transform:translateY(-2px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:transparent;color:var(--white);
+  padding:.9rem 2.1rem;font-weight:500;font-size:.88rem;
+  text-decoration:none;border:1px solid rgba(248,246,241,.22);border-radius:2px;
+  transition:border-color .2s,color .2s,transform .2s;
+}
+.btn-ghost:hover{border-color:var(--gold-bright);color:var(--gold-bright);transform:translateY(-2px)}
+
+/* ─── TRUST BAR ──────────────────────────── */
+#trust{
+  background:var(--navy-mid);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:1.9rem 6%;
+  display:flex;justify-content:center;gap:4rem;flex-wrap:wrap;
+  position:relative;z-index:2;
+}
+.trust-item{display:flex;align-items:center;gap:.9rem}
+.trust-icon{
+  width:38px;height:38px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(184,137,42,.1);border-radius:3px;
+}
+.trust-icon svg{width:18px;height:18px;stroke:var(--gold-bright);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.trust-label{font-size:.7rem;color:var(--muted);font-weight:500;letter-spacing:.07em;text-transform:uppercase}
+.trust-val{font-size:.9rem;font-weight:600;color:var(--white)}
+
+/* ─── SECTION COMMONS ────────────────────── */
+section{position:relative;z-index:1}
+.section-pad{padding:7rem 6%}
+.section-label{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.7rem;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold-bright);margin-bottom:.9rem;
+}
+.section-label::before{content:'';width:22px;height:1px;background:var(--gold-bright)}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.9rem,3.2vw,3rem);font-weight:700;line-height:1.1;
+  color:var(--white);margin-bottom:1rem;
+}
+.gold-bar{width:44px;height:2px;background:var(--gold);margin-bottom:1.6rem}
+
+/* ─── ABOUT ──────────────────────────────── */
+#about{background:var(--navy-mid);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-img-wrap{position:relative}
+.about-img-wrap img{
+  width:100%;height:480px;object-fit:cover;border-radius:3px;display:block;
+  filter:brightness(.82) contrast(1.05);
+}
+.about-caption{
+  position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;
+  background:rgba(8,18,31,.9);backdrop-filter:blur(12px);
+  border:1px solid var(--border);border-radius:3px;
+  padding:1.1rem 1.4rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.about-avatar{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--gold),var(--navy-light));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--navy);
+}
+.caption-name{font-size:.9rem;font-weight:600}
+.caption-role{font-size:.75rem;color:var(--gold-bright);margin-top:.1rem}
+.about-text p{font-size:.94rem;color:rgba(248,246,241,.68);line-height:1.9;margin-bottom:1.1rem}
+.about-text strong{color:var(--gold-bright);font-weight:600}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-top:1.8rem}
+.pillar{
+  background:var(--navy);border:1px solid var(--border);border-radius:3px;
+  padding:1.05rem 1.2rem;display:flex;gap:.8rem;align-items:flex-start;
+  transition:border-color .2s;
+}
+.pillar:hover{border-color:var(--gold)}
+.pillar-icon{
+  width:30px;height:30px;flex-shrink:0;
+  background:rgba(184,137,42,.1);border-radius:2px;
+  display:flex;align-items:center;justify-content:center;margin-top:.1rem;
+}
+.pillar-icon svg{width:14px;height:14px;stroke:var(--gold-bright);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pillar-name{font-size:.85rem;font-weight:600;margin-bottom:.15rem}
+.pillar-desc{font-size:.76rem;color:var(--muted);line-height:1.5}
+
+/* ─── SERVICES ───────────────────────────── */
+#services{background:var(--navy)}
+.services-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:3.5rem;flex-wrap:wrap;gap:1.5rem;
+}
+.services-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.5px;background:var(--border);
+  border:1px solid var(--border);border-radius:4px;overflow:hidden;
+}
+.svc{
+  background:var(--navy-card);padding:0;
+  position:relative;overflow:hidden;transition:background .3s;
+}
+.svc::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:2px;background:var(--gold);transition:width .45s ease;
+}
+.svc:hover::after{width:100%}
+.svc:hover{background:var(--navy-light)}
+.svc-img{
+  width:100%;height:200px;object-fit:cover;display:block;
+  filter:brightness(.65) saturate(.7);transition:filter .4s;
+}
+.svc:hover .svc-img{filter:brightness(.8) saturate(.85)}
+.svc-body{padding:2.2rem 2.4rem}
+.svc-num{
+  font-family:'Playfair Display',serif;font-size:.78rem;
+  color:var(--gold);font-weight:600;letter-spacing:.12em;
+  display:block;margin-bottom:.9rem;
+}
+.svc-title{
+  font-family:'Playfair Display',serif;font-size:1.45rem;
+  font-weight:700;color:var(--white);margin-bottom:.7rem;line-height:1.2;
+}
+.svc-desc{font-size:.87rem;color:rgba(248,246,241,.56);line-height:1.75;margin-bottom:1.3rem}
+.svc-list{list-style:none;display:flex;flex-direction:column;gap:.42rem}
+.svc-list li{
+  font-size:.81rem;color:rgba(248,246,241,.48);
+  padding-left:1.1rem;position:relative;
+}
+.svc-list li::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:.7rem}
+
+/* ─── WHY US ─────────────────────────────── */
+#why{background:var(--navy-mid);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.why-center{max-width:580px;margin:0 auto;text-align:center;margin-bottom:3.5rem}
+.why-center .section-label{justify-content:center}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.why-card{
+  background:var(--navy);border:1px solid var(--border);border-radius:3px;
+  padding:1.9rem 1.6rem;transition:border-color .3s,transform .3s;
+}
+.why-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.why-icon{
+  width:42px;height:42px;background:rgba(184,137,42,.1);border-radius:3px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;
+}
+.why-icon svg{width:20px;height:20px;stroke:var(--gold-bright);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.why-title{font-size:.93rem;font-weight:600;margin-bottom:.45rem}
+.why-desc{font-size:.82rem;color:var(--muted);line-height:1.65}
+
+/* ─── CONTACT ────────────────────────────── */
+#contact{background:var(--navy)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:5rem;align-items:start}
+.contact-channels{display:flex;flex-direction:column;gap:.85rem;margin-top:2.2rem}
+.channel{
+  display:flex;align-items:center;gap:1.1rem;padding:1.05rem 1.3rem;
+  background:var(--navy-card);border:1px solid var(--border);border-radius:3px;
+  text-decoration:none;color:var(--white);transition:border-color .2s,transform .2s;
+}
+.channel:hover{border-color:var(--gold);transform:translateX(4px)}
+.ch-icon{
+  width:36px;height:36px;background:rgba(184,137,42,.1);border-radius:3px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.ch-icon svg{width:17px;height:17px;stroke:var(--gold-bright);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ch-icon svg.filled{fill:var(--gold-bright);stroke:none}
+.ch-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;font-weight:500;margin-bottom:.12rem}
+.ch-val{font-size:.9rem;font-weight:500}
+.social-row{display:flex;gap:.65rem;margin-top:1.8rem;flex-wrap:wrap}
+.social-btn{
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.52rem .95rem;
+  background:var(--navy-card);border:1px solid var(--border);border-radius:2px;
+  color:rgba(248,246,241,.62);text-decoration:none;font-size:.78rem;font-weight:500;
+  transition:border-color .2s,color .2s;
+}
+.social-btn svg{width:13px;height:13px}
+.social-btn:hover{border-color:var(--gold);color:var(--gold-bright)}
+.contact-form{
+  background:var(--navy-mid);border:1px solid var(--border);
+  border-radius:4px;padding:2.5rem;
+}
+.contact-form h3{
+  font-family:'Playfair Display',serif;font-size:1.5rem;
+  font-weight:700;margin-bottom:.3rem;
+}
+.contact-form>p{font-size:.85rem;color:var(--muted);margin-bottom:1.9rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{display:flex;flex-direction:column;gap:.38rem;margin-bottom:.9rem}
+.field label{font-size:.71rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:rgba(248,246,241,.5)}
+.field input,.field select,.field textarea{
+  background:var(--navy);border:1px solid rgba(184,137,42,.18);border-radius:2px;
+  padding:.7rem 1rem;color:var(--white);font-family:'Inter',sans-serif;font-size:.87rem;
+  outline:none;transition:border-color .2s;width:100%;
+}
+.field input::placeholder,.field textarea::placeholder{color:rgba(248,246,241,.22)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+.field select option{background:var(--navy-mid)}
+.field textarea{resize:vertical;min-height:108px}
+.form-footer{display:flex;align-items:center;gap:1.2rem;margin-top:.3rem;flex-wrap:wrap}
+.form-note{font-size:.76rem;color:var(--muted)}
+
+/* ─── FOOTER ─────────────────────────────── */
+footer{
+  background:var(--navy-mid);border-top:1px solid var(--border);
+  padding:3.5rem 6% 2rem;
+  display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:3rem;
+}
+.footer-logo{
+  font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;
+  color:var(--gold-bright);text-decoration:none;display:block;margin-bottom:.85rem;
+}
+.footer-logo span{color:var(--white);font-weight:500}
+.footer-brand p{font-size:.83rem;color:var(--muted);line-height:1.75;max-width:270px}
+.footer-col h4{font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-col a{font-size:.84rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{
+  background:var(--navy-mid);border-top:1px solid var(--border-dim);
+  padding:1.1rem 6%;display:flex;justify-content:space-between;
+  font-size:.77rem;color:var(--muted);
+}
+
+/* ─── WA FLOAT ───────────────────────────── */
+.wa-float{
+  position:fixed;bottom:2rem;right:2rem;
+  width:52px;height:52px;background:#25D366;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 18px rgba(37,211,102,.4);z-index:300;
+  text-decoration:none;transition:transform .2s,box-shadow .2s;
+}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 26px rgba(37,211,102,.55)}
+.wa-float svg{width:25px;height:25px;fill:white}
+
+/* ─── ANIMATIONS ─────────────────────────── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(26px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ─── RESPONSIVE ─────────────────────────── */
+@media(max-width:960px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem}
+  .services-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  footer{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  #trust{gap:2rem}
+}
+@media(max-width:600px){
+  .why-grid{grid-template-columns:1fr}
+  footer{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:.4rem;text-align:center}
+  .form-row{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+  #trust{flex-direction:column;align-items:flex-start;padding:1.5rem 6%}
+}
+nav.open .nav-links{
+  display:flex;flex-direction:column;
+  position:absolute;top:100%;left:0;right:0;
+  background:rgba(8,18,31,.97);backdrop-filter:blur(18px);
+  padding:1.4rem 6%;gap:1.1rem;
+  border-bottom:1px solid var(--border);
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">LKC <span>Accounting</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-img" id="heroImg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Ledger &amp; Knowledge Consulting</div>
+    <h1 class="hero-title">
+      Financial Clarity<br>for <em>Your Business</em>
+    </h1>
+    <p class="hero-sub">
+      Professional bookkeeping and accounting services built for small business owners in Kenya — clear, affordable, and personal.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-gold">Book a Free Consultation</a>
+      <a href="#services" class="btn-ghost">Explore Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div id="trust">
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <div>
+      <div class="trust-label">Privacy</div>
+      <div class="trust-val">100% Confidential</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    </div>
+    <div>
+      <div class="trust-label">Response</div>
+      <div class="trust-val">Fast &amp; Reliable</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    </div>
+    <div>
+      <div class="trust-label">Pricing</div>
+      <div class="trust-val">Affordable Rates</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div>
+      <div class="trust-label">First Session</div>
+      <div class="trust-val">Free Consultation</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="section-pad">
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80&fit=crop&crop=faces,top" alt="Leon, Founder of LKC Accounting" loading="lazy"/>
+      <div class="about-caption">
+        <div class="about-avatar">L</div>
+        <div>
+          <div class="caption-name">Leon — Founder</div>
+          <div class="caption-role">Diploma in Accountancy · Est. 2025</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">A Fresh Perspective on Small Business Finance</h2>
+      <div class="gold-bar"></div>
+      <p>LKC Accounting was founded in 2025 with one mission: to make professional accounting services <strong>accessible to everyday Kenyan entrepreneurs</strong>.</p>
+      <p>As an accounting student, I bring current, practical knowledge directly to your business — without the overhead of a big firm. I understand the unique challenges faced by mama mbogas, barbers, butchery owners, and salonists.</p>
+      <p>We don't just crunch numbers. We give you <strong>insights that help you make better decisions</strong>, plug financial leaks, and grow your profits — explained in simple, plain language.</p>
+      <a href="#contact" class="btn-gold" style="margin-top:1.2rem;display:inline-flex">Start the Conversation</a>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div><div class="pillar-name">Confidential</div><div class="pillar-desc">Your data stays private, always</div></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div><div class="pillar-name">Timely</div><div class="pillar-desc">Reports delivered when needed</div></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div><div class="pillar-name">Personal</div><div class="pillar-desc">Tailored to your business</div></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div><div class="pillar-name">Affordable</div><div class="pillar-desc">Rates that fit your budget</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section-pad">
+  <div class="services-header">
+    <div>
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Services Built for<br>Small Business Owners</h2>
+    </div>
+    <a href="#contact" class="btn-ghost">Get a Free Quote</a>
+  </div>
+
+  <div class="services-grid">
+    <div class="svc">
+      <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=800&q=75&fit=crop" alt="Accounting records" class="svc-img" loading="lazy"/>
+      <div class="svc-body">
+        <span class="svc-num">01</span>
+        <h3 class="svc-title">Accounting Records Cleanup</h3>
+        <p class="svc-desc">Transform chaotic financial records into organized, reliable data you can actually act on.</p>
+        <ul class="svc-list">
+          <li>Fix and organize messy Excel files</li>
+          <li>Reconcile cash, sales, and expenses</li>
+          <li>Restore missing or inconsistent records</li>
+          <li>Build a clean baseline going forward</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc">
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=75&fit=crop" alt="Financial analysis" class="svc-img" loading="lazy"/>
+      <div class="svc-body">
+        <span class="svc-num">02</span>
+        <h3 class="svc-title">Loss &amp; Leakage Reviews</h3>
+        <p class="svc-desc">Uncover where your money is silently disappearing and get a clear plan to plug the leaks.</p>
+        <ul class="svc-list">
+          <li>Identify unexplained losses</li>
+          <li>Review internal cash handling controls</li>
+          <li>Highlight weak spots in your process</li>
+          <li>Practical action plan included</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc">
+      <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=75&fit=crop" alt="Bookkeeping" class="svc-img" loading="lazy"/>
+      <div class="svc-body">
+        <span class="svc-num">03</span>
+        <h3 class="svc-title">Bookkeeping Support</h3>
+        <p class="svc-desc">Ongoing financial oversight so you always know where your business stands — without the spreadsheet headaches.</p>
+        <ul class="svc-list">
+          <li>Regular tracking of income &amp; expenses</li>
+          <li>Simple monthly financial summaries</li>
+          <li>Owner-friendly reports, no jargon</li>
+          <li>Flexible monthly or weekly packages</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=75&fit=crop" alt="Business advisory" class="svc-img" loading="lazy"/>
+      <div class="svc-body">
+        <span class="svc-num">04</span>
+        <h3 class="svc-title">Accounting Advisory &amp; Consulting</h3>
+        <p class="svc-desc">Strategic financial guidance to help your business grow smarter and make confident decisions.</p>
+        <ul class="svc-list">
+          <li>Business performance reviews</li>
+          <li>Pricing &amp; cost structure guidance</li>
+          <li>Financial decision support</li>
+          <li>Growth planning conversations</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why" class="section-pad">
+  <div class="why-center">
+    <div class="section-label">Why LKC</div>
+    <h2 class="section-title">Why Small Business Owners Choose Us</h2>
+    <p style="font-size:.94rem;color:var(--muted);line-height:1.75">We're not a big intimidating firm. We're your dedicated financial partner — approachable, affordable, and genuinely invested in your success.</p>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="why-title">We Know the Kenyan Market</div>
+      <div class="why-desc">We understand running a small business in Kenya — M-Pesa, daily cash sales, and informal records.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="why-title">Plain Language, No Jargon</div>
+      <div class="why-desc">We explain your finances in simple terms you'll actually understand — no accounting degree required.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <div class="why-title">Rates That Actually Fit</div>
+      <div class="why-desc">Professional accounting shouldn't be only for big companies. Our pricing is designed around small business budgets.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      </div>
+      <div class="why-title">Easy to Reach, Fast to Respond</div>
+      <div class="why-desc">WhatsApp, call, or email — we respond quickly. No waiting weeks like with large accounting firms.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      </div>
+      <div class="why-title">Current, Practical Knowledge</div>
+      <div class="why-desc">As an active accounting student, our knowledge is up-to-date and backed by real academic rigor.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div class="why-title">Free First Consultation</div>
+      <div class="why-desc">No risk, no commitment. Let's talk about your business first — you decide if we're the right fit.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-pad">
+  <div class="contact-grid">
+    <div>
+      <div class="section-label">Get in Touch</div>
+      <h2 class="section-title">Let's Talk About<br>Your Business</h2>
+      <div class="gold-bar"></div>
+      <p style="color:rgba(248,246,241,.6);line-height:1.85;font-size:.93rem;max-width:400px">
+        Ready to get clarity on your finances? Reach out through any channel below — or fill in the form. The first consultation is completely free.
+      </p>
+
+      <div class="contact-channels">
+        <a href="https://wa.me/254748349151" target="_blank" class="channel">
+          <div class="ch-icon">
+            <svg viewBox="0 0 24 24" class="filled" style="width:17px;height:17px;fill:var(--gold-bright)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div><div class="ch-label">WhatsApp (Preferred)</div><div class="ch-val">+254 748 349 151</div></div>
+        </a>
+        <a href="tel:0748349151" class="channel">
+          <div class="ch-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.16 6.16l1-1a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg>
+          </div>
+          <div><div class="ch-label">Phone Call</div><div class="ch-val">0748 349 151</div></div>
+        </a>
+        <a href="mailto:info.lkcacc@gmail.com" class="channel">
+          <div class="ch-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div><div class="ch-label">Email</div><div class="ch-val">info.lkcacc@gmail.com</div></div>
+        </a>
+      </div>
+
+      <div class="social-row">
+        <a href="https://www.instagram.com/lkcaccounting" target="_blank" class="social-btn">
+          <svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Instagram
+        </a>
+        <a href="https://www.tiktok.com/@lkcaccounting" target="_blank" class="social-btn">
+          <svg viewBox="0 0 24 24" style="fill:currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+          TikTok
+        </a>
+        <a href="https://www.linkedin.com/company/lkcaccounting" target="_blank" class="social-btn">
+          <svg viewBox="0 0 24 24" style="fill:currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <p>Describe your situation and we'll reach out with a free consultation.</p>
+
+      <div class="form-row">
+        <div class="field"><label>First Name</label><input type="text" placeholder="e.g. Jane"></div>
+        <div class="field"><label>Last Name</label><input type="text" placeholder="e.g. Wanjiku"></div>
+      </div>
+      <div class="field"><label>Phone / WhatsApp</label><input type="tel" placeholder="e.g. 0712 345 678"></div>
+      <div class="field">
+        <label>Business Type</label>
+        <select>
+          <option value="" disabled selected>Select your business type…</option>
+          <option>Retail Shop / Mama Mboga / Duka</option>
+          <option>Barber Shop</option>
+          <option>Salon</option>
+          <option>Butchery</option>
+          <option>Restaurant / Food Business</option>
+          <option>Other Small Business</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>What do you need help with?</label>
+        <textarea placeholder="Briefly describe your situation…"></textarea>
+      </div>
+      <div class="form-footer">
+        <a href="mailto:info.lkcacc@gmail.com" class="btn-gold">Send Message</a>
+        <span class="form-note">or WhatsApp us directly</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="#home" class="footer-logo">LKC <span>Accounting</span></a>
+    <p>Ledger &amp; Knowledge Consulting — professional accounting services for small business owners across Kenya. Founded in 2025.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Navigation</h4>
+    <ul>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#services">Our Services</a></li>
+      <li><a href="#why">Why LKC</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Follow Us</h4>
+    <ul>
+      <li><a href="https://www.instagram.com/lkcaccounting" target="_blank">Instagram</a></li>
+      <li><a href="https://www.tiktok.com/@lkcaccounting" target="_blank">TikTok</a></li>
+      <li><a href="https://www.linkedin.com/company/lkcaccounting" target="_blank">LinkedIn</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2025 LKC Accounting (Ledger &amp; Knowledge Consulting). All rights reserved.</span>
+  <span>Est. 2025</span>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/254748349151" target="_blank" class="wa-float" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // Hero image pan-in effect
+  const heroImg = document.getElementById('heroImg');
+  const img = new Image();
+  img.src = 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1800&q=80&fit=crop';
+  img.onload = () => heroImg.classList.add('loaded');
+
+  // Navbar shrink on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.padding =
+      window.scrollY > 60 ? '.85rem 6%' : '1.25rem 6%';
+  });
+
+  // Mobile nav
+  function toggleNav() {
+    document.getElementById('navbar').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a =>
+    a.addEventListener('click', () =>
+      document.getElementById('navbar').classList.remove('open')));
+
+  // Scroll-reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.svc, .why-card, .pillar, .channel, .trust-item, .about-img-wrap, .contact-form').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(22px)';
+    el.style.transition = `opacity .6s ${i * 0.05}s ease, transform .6s ${i * 0.05}s ease`;
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
